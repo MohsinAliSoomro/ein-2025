@@ -1,0 +1,106 @@
+<%- partial ("../../partials/admin-header.ejs") %>
+
+
+<body>
+  <!-- End Navigation -->
+  <div class="clearfix"></div>
+
+  <!-- General Detail Start -->
+  <section class="dashboard-wrap">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- Sidebar Wrap -->
+        <%- partial('../side-bar-nav.ejs') %>
+
+        <!-- Content Wrap -->
+        <div class="col-lg-9 col-md-8">
+          <div class="dashboard-body">
+            <div class="dashboard-caption">
+
+              <div class="dashboard-caption-header">
+                <h4><i class="ti-briefcase"></i>Candidates</h4>
+              </div>
+
+              <div class="dashboard-caption-wrap">
+
+                <!-- row -->
+                <div class="row">
+
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search Name">
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <!-- row -->
+                <!-- <%=JSON.stringify(candidateList) %> -->
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Candidate Name</th>
+                        <th scope="col">Joined Date</th>
+                        <th scope="col">Jobs Applied</th>
+                        <th scope="col"> Created By</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for( let i = 0; i < candidateList.length; i++ ) { %>
+                      <% const candidate = candidateList[i]; %>
+                      <tr>
+                        <th scope="row"><a href="job-detail-3.html"><%=candidate.firstName%> <%=candidate.lastName%></a>
+                        </th>
+                        <td><%=new Date(candidate.createdAt).toLocaleString()%></td>
+                        <td>
+                          <%=candidate.appliedJobs.length%>
+                        </td>
+                        <td>
+                          <%=candidate.profileFor%>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <select id="" class="form-control status" data-id="<%=candidate.id  %>">
+                              <option value="">Select Status</option>
+                              <option <%=candidate.status==='Inactive'?'selected':''  %>>Inactive</option>
+                              <option <%=candidate.status==='Active'?'selected':''  %>>Active</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-blue manage-btn " data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="View"><i class="ti-file"></i></a>
+                          <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="Edit"><i class="ti-pencil-alt"></i></a>
+                          <a href="#" data-id="<%=candidate.id%>" class="btn btn-cancel delete manage-btn" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="Remove"><i class="ti-close"></i></a>
+                        </td>
+                      </tr>
+                      <% } %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- General Detail End -->
+  <%-partial('../../partials/employer-footer1.ejs') %>
+
+  <script src="/js/admin/candidate/manage-candidate.js"></script>
+
+  </div>
+</body>
+
+</html>

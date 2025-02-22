@@ -1,0 +1,83 @@
+<%- partial("../partials/admin-header.ejs") %>
+
+  <body>
+    <div class="clearfix"></div>
+
+    <!-- General Detail Start -->
+    <section class="dashboard-wrap">
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- Sidebar Wrap -->
+          <%- partial('side-bar-nav.ejs') %>
+
+            <!-- Content Wrap -->
+            <div class="col-lg-9 col-md-8">
+              <div class="dashboard-body">
+                <div class="dashboard-caption">
+
+                  <div class="dashboard-caption-header">
+                    <h4><i class="ti-settings"></i>Candidate Dashboard</h4>
+                  </div>
+
+                  <div class="dashboard-caption-wrap">
+
+                    <!-- Overview -->
+                    <div class="row">
+                      <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="dashboard-stat widget-1">
+                          <div class="dashboard-stat-content">
+                            <h4>
+                              <%=candidateCount%>
+                            </h4> <span>Candidates</span>
+                          </div>
+                          <div class="dashboard-stat-icon"><i class="ti-user"></i></div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="dashboard-stat widget-2">
+                          <div class="dashboard-stat-content">
+                            <h4>
+                              <%=employerCount%>
+                            </h4> <span>Employers</span>
+                          </div>
+                          <div class="dashboard-stat-icon"><i class="ti-home"></i></div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="dashboard-stat widget-3">
+                          <div class="dashboard-stat-content">
+                            <h4>
+                              <%=jobCount%>
+                            </h4> <span>Jobs-Posted</span>
+                          </div>
+                          <div class="dashboard-stat-icon"><i class="ti-briefcase"></i></div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="dashboard-stat widget-4">
+                          <div class="dashboard-stat-content">
+                            <h4>0</h4> <span>Blocked</span>
+                          </div>
+                          <div class="dashboard-stat-icon"><i class="fa fa-ban"></i></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </section>
+    <%- partial('../partials/candidate-footer1.ejs')%>
+    views\admin\admin-dashboard.ejs
+  </body>
+
+  </html>

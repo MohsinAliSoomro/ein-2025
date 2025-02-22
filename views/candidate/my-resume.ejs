@@ -1,0 +1,767 @@
+<%- partial("../partials/new-header-candidate.ejs") %>
+
+<style>
+  div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+  }
+  .choose-cover {
+    cursor: pointer;
+  }
+
+  .ur-detail-wrap {
+    border-bottom: none;
+  }
+
+  button.add-skill {
+    background: var(--theme);
+    margin: 2em auto;
+    border: none;
+    margin-left: 15px;
+    display: inline-block;
+    color: #ffffff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 10px 30px;
+    min-width: 180px;
+  }
+
+  button.btn.remove-skill {
+    background: #03a9f4;
+    margin: 2em auto;
+    display: inline-block;
+    color: #ffffff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 10px 30px;
+    min-width: 180px;
+    border: none;
+    float: right;
+    margin-right: 15px;
+  }
+
+  .inner-header-title {
+	
+    height: 100px;
+  }
+  button.add-location {
+    background: var(--theme);
+    margin: 2em auto;
+    border: none;
+    display: inline-block;
+    color: #ffffff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 10px 30px;
+    min-width: 180px;
+  }
+
+  button.btn.remove-location {
+    background: #03a9f4;
+    margin: 2em auto;
+    display: inline-block;
+    color: #ffffff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 10px 30px;
+    min-width: 180px;
+    border: none;
+    float: right;
+    margin-right: 15px;
+  }
+</style>
+
+<!-- Header Title Start -->
+<% let resume = candidate.resumeId||{} %>
+<section class="inner-header-title blank">
+  <div class="container">
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Header Title End -->
+
+<!-- General Detail Start -->
+<div class="section detail-desc">
+  <div class="container">
+    <div class="ur-detail-wrap create-kit padd-bot-0">
+      <div class="row bottom-mrg">
+        <div class="container mrg-top-10 mrg-bot-10">
+          <h1>Candidate Resume</h1>
+
+        </div>
+          <!-- row -->
+
+          <form id="Ajaxform">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="detail-pannel-footer-btn">
+                <label>Resume*</label>
+                <input type="text" class="form-control" placeholder="Please upload your resume." />
+                <a id="choose-resume" class="footer-btn choose-cover"> <i class="fa fa-upload"></i> Upload Resume</a>
+                <input type="file" class='d-none' data-uploaded="<%=resume.uploadedResume%>" id='uploaded-resume' required />
+                <div class="text-danger" id='uploaded-resume-feedback'></div>
+              </div>
+            </div>
+          </form>
+
+        <form class="add-feild " id="candidate-resume-form">
+			
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				  <div class="form-group">
+					<label>First Name*</label>
+					<input type="text" name="firstName" class="form-control" placeholder="Enter First Name"
+					  value="<%= candidate.firstName %>" required disabled>
+				  </div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				  <div class="form-group">
+					<label>Last Name*</label>
+					<input type="text" name='lastName' class="form-control" placeholder="Enter Last Name"
+					  value="<%= candidate.lastName %>" required disabled>
+				  </div>
+				</div>
+		
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label>Profile Created For*</label>
+                <select name='profileFor' class="form-control" required>
+                  <option value="">Select Option</option>
+                  <option <%=candidate.profileFor==='Self'&&'selected'%>>Self</option>
+                  <option <%=candidate.profileFor==='Others'&&'selected'%>>Others</option>
+                </select>
+              </div>
+            </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label>Professional Titles*</label>
+              <input type="text" name='professionalTitle' class="form-control" value="<%=resume.professionalTitle  %>"
+                placeholder="Example: Software Engineer, Software Developer" required>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label >Category*</label>
+              <select name="jobCategory" class="form-control input-lg" required>
+                <option value="">Select Category</option>
+                <% const optionsArrayCats =["Accounting Assistant","Arts, Design, Media","Charity and Voluntary","Education and Coachs","Finance And Business","IT and Computer","Banking",]%>
+                <% for( let i = 0; i < optionsArrayCats.length; i++ ) { %>
+                <% let option = optionsArrayCats[i]; %>
+                <% if (resume.jobCategory===option) { %>
+                <option selected><%=option %></option>
+                <% } else{%>
+                <option><%=option %></option>
+                <% } %>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label >Notice Period (weeks)*</label>
+              <input type="number" class="form-control"
+                value="<%= resume.noticePeriod?resume.noticePeriod.toString():"" %>" name="noticePeriod" min="0"
+                placeholder="Notice Period (weeks)" required>
+                <div id="noticePeriod-feedback" class="text-danger"></div>
+            </div>
+          </div>
+
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <label >About Me</label>
+            <textarea class="form-control" name="aboutNotes"
+              placeholder="About Notes"><%=resume.aboutNotes %></textarea>
+              <div id="aboutNotes-feedback" class="text-danger"></div>
+          </div>
+
+
+          <!-- row -->
+          <!-- <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <h4>Social Accounts</h4>
+            </div>
+          </div> -->
+
+        <!-- row -->
+          <!-- <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Facebook</label>
+              <input type="text" name="facebook" class="form-control" value='<%= candidate.facebook %>'
+                placeholder="https://www.facebook.com/username">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Twitter</label>
+              <input name='twitter' type="text" class="form-control" placeholder="https://twitter.com/username"
+                value='<%= candidate.twitter %>'>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Google</label>
+              <input name="google" type="text" class="form-control" placeholder="username@gmail.com"
+                value='<%= candidate.google %>'>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label>Linkedin</label>
+              <input name="linkedIn" type="text" class="form-control"
+                placeholder="https://linkedin.com/username" value='<%= candidate.linkedIn %>'>
+            </div>
+          </div> -->
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- General Detail End -->
+
+<!-- full detail SetionStart-->
+<section class="full-detail">
+  <div class="container">
+    <div class="row bottom-mrg extra-mrg">
+      <form id="candidate-info-form">
+        <h2 class="detail-title">General Information</h2>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label for="">Email*</label>
+            <input type="text" name='email' value="<%= candidate.email %>" class="form-control"
+              placeholder="Email Address" disabled>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label for="">Phone*</label>
+            <input type="text" name='phone' value="<%=candidate.phone %>" class="form-control number-field"
+              placeholder="Phone Number" maxlength="10" required >
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label for="">Website</label>
+            <input type="text" name="website" value="<%=resume.website  %>" class="form-control"
+              placeholder="Website Address">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" value="United States" class="form-control" disabled>
+            <select class="form-control custom-select countries d-none presel-US" name="country" id="countryId" required
+              disabled>
+              <option value="">Select Country</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label>State*</label>
+            <select class="form-control custom-select states " name="state" id="stateId" required>
+              <option value="">Select State</option>
+            </select>
+            <div id="state-feedback" class="text-danger"></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label>City*</label>
+            <select class="form-control custom-select cities " name="city" id="cityId" required>
+              <option value="">Select City</option>
+            </select>
+            <div id="city-feedback" class="text-danger"></div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label>Zip*</label>
+            <input type="text" class="form-control" name="zip" placeholder="10001" value="<%= candidate.zip %>" required>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label>Available to Relocate*</label><sup class="text-danger">*</sup><span id="relocate-feedback" class="text-danger"></span>
+            <div class="flex-row mrg-top-10  ">
+
+              <label class="custom-radio custom-font-size mrg-r-15">
+                Yes, any location in USA.
+                <input type="radio" name="relocate" value="Yes" <%=candidate.relocate=='Yes'?'checked':'' %> required>
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-radio custom-font-size mrg-r-15">
+                Other, only specific locations
+                <input type="radio" name="relocate" value="Other" <%=candidate.relocate=='Other'?'checked':'' %> required>
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-radio custom-font-size mrg-r-15">
+                No
+                <input type="radio" name="relocate" value="No" <%=candidate.relocate=='No'?'checked':'' %> required>
+                <span class="checkmark"></span>
+              </label>
+              <div id="relocate-feedback" class="text-danger"></div>
+            </div>
+            <div class="other-location <%=candidate.relocate=='Other'?'':'hide' %>">
+              <div class="extra-field-box">
+                <div class="multi-box">
+                  <% const locationList = candidate.otherLocationList; %>
+                  <% if (locationList.length > 0) { %>
+                    <% for( let i = 0; i < locationList.length; i++ ) { %>
+                    <% const location = locationList[i]; %>
+                    <div class="form-group location">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <label>Location<em class="sno"><%=i+1%></em>*</label>
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" class="form-control city" placeholder="City" value="<%=location.city%>" required>
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" class="form-control state" placeholder="State" value="<%=location.state%>" required>
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" class="form-control zip" placeholder="zip" value="<%=location.zip%>" required>
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+						<button type="button" class="btn remove-location">Remove</button>
+						</div>	
+                    </div>
+                    <% } %>
+                  <% } else { %>
+                  <div class="form-group location">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <label>Location<em class="sno">1</em>*</label>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <input type="text" class="form-control city" placeholder="City">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <input type="text" class="form-control state" placeholder="State">
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <input type="text" class="form-control zip" placeholder="zip">
+                    </div>
+                     <div class="col-md-3 col-sm-3 col-xs-12">
+						<button type="button" class="btn remove-location">Remove</button>
+					</div>	
+                  </div>
+                  <% } %>
+
+                </div>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+                <button type="button" class="add-location ml-0">Add Location</button>
+				</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div class="row bottom-mrg extra-mrg">
+      <form id="candidate-job-form">
+        <h2 class="detail-title">Job Related</h2>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <label> Employment Type</label>
+          <div class="form-group mrg-top-10">
+            <!-- <span class="input-group-addon"><i class="fa fa-briefcase"></i></span> -->
+            <!-- <input type="text" class="form-control" placeholder="Employment Type"> -->
+
+            <span class="custom-checkbox padd-r-10">
+              <input name="employmentType"
+                <%=resume.employmentType&&resume.employmentType.includes("Full Time")?"checked":''  %> value="Full Time"
+                type="checkbox" id="1">
+              <label for="1"></label>
+              Full Time
+            </span>
+            <span class="custom-checkbox padd-r-10">
+              <input name="employmentType"
+                <%=resume.employmentType&&resume.employmentType.includes("Part Time")?"checked":''  %> value="Part Time"
+                type="checkbox" id="2">
+              <label for="2"></label>
+              Part Time
+            </span>
+            <span class="custom-checkbox padd-r-10">
+              <input name="employmentType"
+                <%=resume.employmentType&&resume.employmentType.includes("Contracts")?"checked":''  %> value="Contracts"
+                type="checkbox" id="3">
+              <label for="3"></label>
+              Contracts
+            </span>
+            <span class="custom-checkbox padd-r-10">
+              <input name="employmentType"
+                <%=resume.employmentType&&resume.employmentType.includes("Third Party")?"checked":''  %>
+                value="Third Party" type="checkbox" id="4">
+              <label for="4"></label>
+              Third Party
+            </span>
+
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <label>Willingness to change </label>
+          <div class="input-group mrg-top-10">
+            <select name="willinglessToChange" class="form-control input-lg">
+              <option value="">Select Option</option>
+              <option <%=resume.willinglessToChange==="Employed, Actively looking"?'selected':''%>>Employed, Actively
+                looking</option>
+              <option <%=resume.willinglessToChange==="Unemployed, Actively looking"?'selected':''%>>Unemployed,
+                Actively looking</option>
+              <option <%=resume.willinglessToChange==="Open to change"?'selected':''%>>Open to change</option>
+              <option <%=resume.willinglessToChange==="Would only change for the perfect opportunity"?'selected':''%>>
+                Would only change for the perfect opportunity</option>
+              <option <%=resume.willinglessToChange==="Looking for a job after graduation"?'selected':''%>>Looking for a
+                job after graduation</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <label>Work Authorization*</label>
+          <%let optionsArray = ["Green Card Holder","US Citizen","Canadian Citizen","Need H1 Visa","Have H1 Visa","Employment Auth Document","TN Permit Holder","Others"] %>
+
+          <div class="input-group mrg-top-10">
+            <select name="workAuthorization" class="form-control input-lg" required>
+              <option value="">Select Option</option>
+              <% for( let i = 0; i < optionsArray.length; i++ ) { %>
+              <% let option = optionsArray[i]; %>
+              <% if (resume.workAuthorization===option) { %>
+              <option selected><%=option %></option>
+              <% } else{%>
+              <option><%=option %></option>
+              <% } %>
+              <% } %>
+
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+<!--
+    <div class="row bottom-mrg extra-mrg">
+      <form>
+        <h2 class="detail-title">Social Profile</h2>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+            <input type="text" name="facebook" value="<%= candidate.facebook %>" class="form-control"
+              placeholder="Profile Link" disabled>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-google"></i></span>
+            <input type="text" name="google" value="<%= candidate.google %>" class="form-control"
+              placeholder="Profile Link" disabled>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+            <input type="text" name="twitter" value="<%= candidate.twitter %>" class="form-control"
+              placeholder="Profile Link" disabled>
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+            <input type="text" name="linkedIn" value="<%= candidate.linkedIn %>" class="form-control"
+              placeholder="Profile Link" disabled>
+          </div>
+        </div>
+
+
+      </form>
+    </div> -->
+
+    <div class="row bottom-mrg extra-mrg ">
+      <form id="candidate-education-form">
+        <h2 class="detail-title">  <i class="ti-plus"></i> Add Education</h2>
+        <div class="extra-field-box">
+          <div class="multi-box">
+            <% const educationList = candidate.educationList %>
+            <% if (educationList.length > 0) { %>
+            <% for( let i = 0; i < educationList.length; i++ ) { %>
+            <% const education = educationList[i]; %>
+            <div class="dublicat-box education">
+              <div class="col-md-12 col-sm-12">
+                <input type="text" class="form-control collegeName" value="<%=education.collegeName  %>"
+                  placeholder="Enter College Name">
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <input type="text" class="form-control qualification" value="<%=education.qualification  %>"
+                  placeholder="Qualification, e.g. Master Of Arts">
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date From</span>
+                  <input type="date" value="<%=education.fromDate  %>" class="form-control fromDate">
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date To</span>
+                  <input type="date" value="<%=education.toDate  %>" class="form-control toDate">
+                </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12 notes-parent">
+                <textarea class="form-control notes " placeholder="Notes"><%=education.notes  %></textarea>
+              </div>
+
+              <button type="button" class="btn remove-field">Remove</button>
+            </div>
+            <% } %>
+            <% }else {%>
+            <div class="dublicat-box education">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <input type="text" class="form-control collegeName" placeholder="Enter College Name">
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <input type="text" class="form-control qualification" placeholder="Qualification, e.g. Master Of Arts">
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date From</span>
+                  <input type="date" data-lang="en" class="form-control fromDate">
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date To</span>
+                  <input type="date" class="form-control toDate">
+                </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12 notes-parent">
+                <textarea class="form-control notes " placeholder="Notes"></textarea>
+              </div>
+
+              <button type="button" class="btn remove-field">Remove</button>
+            </div>
+            <% } %>
+          </div>
+          <button type="button" class="add-field"> <i class="ti-plus"></i> Add Education</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bottom-mrg extra-mrg">
+      <form id="candidate-experience-form">
+        <h2 class="detail-title"> <i class="ti-plus"></i> Add Experience</h2>
+        <div class="extra-field-box">
+          <div class="multi-box">
+            <% const experienceList = candidate.experienceList %>
+            <% if (experienceList.length > 0) { %>
+            <% for( let i = 0; i < experienceList.length; i++ ) { %>
+            <% const experience = experienceList[i]; %>
+            <div class="dublicat-box experience">
+              <div class="col-md-12 col-sm-12">
+                <input type="text" class="form-control employer" value="<%=experience.employer%>"
+                  placeholder="Employer">
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <input type="text" class="form-control position" value="<%=experience.position%>"
+                  placeholder="Position, e.g. Web Designer">
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date From</span>
+                  <input type="date" class="form-control fromDate" value="<%=experience.fromDate%>">
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date To</span>
+                  <input type="date" class="form-control toDate" value="<%=experience.toDate%>">
+                </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <textarea class="form-control  notes" placeholder="Notes"><%=experience.notes%></textarea>
+              </div>
+
+              <button type="button" class="btn remove-field">Remove</button>
+            </div>
+            <% } %>
+            <% }else {%>
+            <div class="dublicat-box experience">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <input type="text" class="form-control employer" placeholder="Employer">
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <input type="text" class="form-control position" placeholder="Position, e.g. Web Designer">
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date From</span>
+                  <input type="date" class="form-control fromDate">
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon">Date To</span>
+                  <input type="date" class="form-control toDate">
+                </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <textarea class="form-control  notes" placeholder="Notes"></textarea>
+              </div>
+
+              <button type="button" class="btn remove-field">Remove</button>
+            </div>
+            <% } %>
+          </div>
+          <button type="button" class="add-field"> <i class="ti-plus"></i> Add Experience</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bottom-mrg extra-mrg ">
+      <form id="candidate-skill-form">
+        <h2 class="detail-title">Add Skills</h2>
+        <div class="extra-field-box">
+            <div class="multi-box">
+              <% const skillList = candidate.skills %>
+              <% if (skillList.length > 0) { %>
+              <% for( let i = 0; i < skillList.length; i++ ) { %>
+              <% const skill = skillList[i]; %>
+              <div class=" skills">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <input type="text" class="form-control name" value="<%= skill.skillId %>"
+                    placeholder="Skills, e.g. Css, Html...">
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="input-group">
+                    <span class="input-group-addon">%</span>
+                    <input type="number" class="form-control percentage" value="<%= skill.percentage %>"
+                      placeholder="85">
+                  </div>
+                </div>
+                <div class="skills-feedback text-danger"></div>
+
+                <button type="button" class="btn remove-skill">Remove</button>
+              </div>
+              <% } %>
+              <% } else { %>
+              <div class="dublicat-box skills">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <input type="text" class="form-control name" placeholder="Skills, e.g. Css, Html...">
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="input-group">
+                    <span class="input-group-addon">%</span>
+                    <input type="number" class="form-control percentage" placeholder="85">
+                  </div>
+                </div>
+                <div class="skills-feedback text-danger"></div>
+                <button type="button" class="btn remove-field">Remove</button>
+              </div>
+              <% } %>
+            </div>
+            <button type="button" class="add-skill">Add Skill</button>
+          </div>
+      </form>
+    </div>
+
+    <div class="row bottom-mrg extra-mrg ">
+      <form>
+        <h2 class="detail-title">  <i class="ti-plus"></i> Social Media</h2>
+        <div class="extra-field-box">
+        <!-- row -->
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <label>Facebook</label>
+              <input type="text" name="facebook" class="form-control" value='<%= candidate.facebook %>'
+                placeholder="https://www.facebook.com/username">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <label>Twitter</label>
+              <input name='twitter' type="text" class="form-control" placeholder="https://twitter.com/username"
+                value='<%= candidate.twitter %>'>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <label>Google</label>
+              <input name="google" type="text" class="form-control" placeholder="username@gmail.com"
+                value='<%= candidate.google %>'>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <label>Linkedin</label>
+              <input name="linkedIn" type="text" class="form-control"
+                placeholder="https://linkedin.com/username" value='<%= candidate.linkedIn %>'>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row bottom-mrg extra-mrg">
+      <div class="col-md-12">
+        <button style='width:100%' id="submit-resume" class="btn btn-success btn-primary small-btn">Submit &
+          Preview</button>
+        <!-- <a href="profile-preview">
+
+          <button style='width:100%' class="btn btn-primary small-btn">
+            Preview
+          </button>
+        </a> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- full detail SetionStart-->
+<%-partial("../partials/new-footer-candidate.ejs") %>
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  var selectedState = "<%=resume.state %>";
+  var selectedCity = "<%=resume.city %>";
+</script>
+<script src="/plugins/js/countrystatecity.js"></script>
+<script src="/js/candidate/my-resume.js"></script>
+
+

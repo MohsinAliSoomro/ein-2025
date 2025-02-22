@@ -1,0 +1,66 @@
+<%- partial("./partials/new-public-header.ejs") %>
+
+<section id="contact">
+	<div class="container contact-heading">
+		<div class="row">
+			<div class="col-sm-12">
+				<center><h2 class="text-white">Contact us</h2></center>
+        <center><p class="text-white">It is unfortunate when employees and companies do not make a good match, but we can help you overcome it. Employee in Need have integrated with the latest technology to provide a seamless experience for job seekers and recruiters. </p></center>
+        <center><p class="text-white">You can reach us to avail yourself services such as Applicant Tracking System(ATS) integration and cloud computingand knowledge management. </p></center>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="contact-form">
+	<div class="container">
+		<div class="row">
+		  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="contact_form">
+			  <h3>Send us a Message</h3>
+				<form action="" class="custom-validation" id="contact-form-common">
+				  <div class="form-group">
+					<label class="text-left">Are you a<sup class="text-danger">*</sup> </label>
+					
+					<select class="form-control" name="type" required>
+					  <% if(userType == '') { %>
+						<option value="">select</option>
+					  <% } %>
+					  <% if(userType == 'candidate' || userType == '') { %>
+						<option>job seeker</option>
+					  <% } %>
+					  <% if(userType == 'employer' || userType == '') { %>
+						<option>employer</option>
+					  <% } %>  
+					</select>
+				  </div>
+
+				  <div class="form-group">
+					<input type="text" name="name" value="<%=name%>" class="form-control" placeholder="Name*" required >
+				  </div>
+				  <div class="form-group">
+					<input type="email" name="email" value="<%=email%>" class="form-control" placeholder="Email*" required >
+				  </div>
+				  <div class="form-group">
+					<input type="text" name="phone" value="<%=phone%>" class="form-control" placeholder="Phone number*" maxlength="10" required>
+				  </div>
+
+				  <div class="form-group">
+					<input type="text" name="subject" value="" class="form-control" placeholder="Subject*" required>
+				  </div>
+				   
+				  <div class="form-group">
+					<textarea name="message" class="form-control" cols="30" rows="10" placeholder="Message*"required></textarea>
+				  </div>
+					<center><button type="submit" class="btn btn-register">SUBMIT</button></center>
+				</form>
+			</div>
+		  </div>
+		</div>
+	</div>
+</section>     
+      <%- partial("./partials/new-public-footer.ejs") %>
+
+        <script src="js/contact.j?1"></script>
+
+       

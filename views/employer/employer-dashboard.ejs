@@ -1,0 +1,108 @@
+<%- partial("../partials/new-header-employer.ejs") %>
+
+
+<!-- General Detail Start -->
+<section class="dashboard-wrap">
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Sidebar Wrap -->
+      <%- partial("employer-side-nav.ejs") %>
+
+      <!-- Content Wrap -->
+      <div class="col-lg-9 col-md-8">
+        <div class="dashboard-body">
+          <div class="dashboard-caption">
+
+            <div class="dashboard-caption-header">
+              <h4><i class="ti-settings"></i>Employer Work Bench</h4>
+            </div>
+
+            <div class="dashboard-caption-wrap">
+
+              <!-- Overview -->
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <a href="/employer/created-jobs?status=active">
+                  <div class="dashboard-stat widget-1">
+
+                      <div class="dashboard-stat-content">
+                        <h4><%= employer.jobs.filter(el=>el.status=='Active').length %> </h4> <span>Active Jobs</span>
+                      </div>
+                      <div class="dashboard-stat-icon"><i class="ti-location-pin"></i></div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <a href="/employer/created-jobs?status=inactive">
+                    <div class="dashboard-stat widget-2">
+                    <div class="dashboard-stat-content">
+                      <h4><%= employer.jobs.filter(el=>el.status!='Active').length %> </h4> <span>Inactive Jobs</span>
+                    </div>
+                    <div class="dashboard-stat-icon"><i class="ti-layers"></i></div>
+                  </div>
+                </a>
+              </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="dashboard-stat widget-3">
+                    <div class="dashboard-stat-content">
+                      <h4><%= employer.jobs.length %> </h4> <span>Total Jobs Posted</span>
+                    </div>
+                    <div class="dashboard-stat-icon"><i class="ti-pie-chart"></i></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="dashboard-stat widget-4">
+                    <div class="dashboard-stat-content">
+                      <h4>107</h4> <span>Total Views</span>
+                    </div>
+                    <div class="dashboard-stat-icon"><i class="ti-bookmark"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+			  <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Job title</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Shortlisted <br> Candidates</th>
+                    <th scope="col">Total Applied</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for( let i = 0; i < jobList.length; i++ ) { %>
+                  <% const job = jobList[i]; %>
+                  <tr>
+                    <th scope="row"><a href="job-details?id=<%= job.id %>"><%= job.title %> </a></th>
+                    <td class="skill-show"><%= job.city%> , <%=job.state %> , <%=job.zip %></td>
+                    <td>
+                    <%=job.shortListed%>
+                  </td>
+                  <td>
+                    <%=job.applied%>
+                    </td>
+
+                  </tr>
+                  <% } %>
+
+                </tbody>
+              </table>
+			</div>
+              <!-- Notifications -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- General Detail End -->
+<%- partial("../partials/new-footer-employer.ejs") %>

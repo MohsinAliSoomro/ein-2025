@@ -1,0 +1,17 @@
+<div class="col-lg-3 col-md-4">
+  <div class="side-dashboard">
+
+      <div class="dashboard-menu">
+          <ul>
+            <%const url = req.url.split('/').pop() %>
+
+              <li class="<%=url==='dashboard'?'active':'' %>"><a href="dashboard"><i
+                          class="ti-dashboard"></i>Admin Dashboard</a></li>
+              <li class="<%=url==='candidate-management'?'active':'' %>" ><a href="/admin/candidate-management"><i class="ti-id-badge"></i>Candidate Management </a></li>
+              <li class="<%=url==='employer-management'?'active':'' %>" ><a href="/admin/employer-management"><i class="ti-briefcase"></i>Employer Management</a></li>
+              <li class="<%=url==='message-management'?'active':'' %>" ><a href="/admin/message-management"><i class="ti-envelope"></i>Message Management</a></li>
+              <!-- <li class="<%=url==='settings'?'active':'' %>" ><a href="/admin/settings"><i class="ti-settings"></i>Settings</a></li> -->
+          </ul>
+      </div>
+  </div>
+</div>

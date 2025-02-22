@@ -1,0 +1,124 @@
+<%- partial("../partials/new-header-candidate.ejs") %>
+
+
+			<!-- General Detail Start -->
+			<section class="dashboard-wrap">
+				<div class="container-fluid">
+					<div class="row">
+
+					<%- partial("candidate-side-nav.ejs") %>
+				<!-- Content Wrap -->
+        <div class="col-lg-9 col-md-8 col-xs-12">
+          <div class="dashboard-body mrg-btm-0">
+            <div class="dashboard-caption">
+
+              <div class="dashboard-caption-header">
+                <h4><i class="ti-settings"></i>Settings</h4>
+              </div>
+
+              <div class="dashboard-caption-wrap">
+                <form id="settings-form" >
+                <!-- row -->
+                <div class="row mrg-top-20">
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label  class='settings-label'>Tips and News</label>
+                      <div class="row flex-row justify-content-left mrg-top-10 text-wrap">
+                        <div class="col-lg-6 col-md-6 col-sm-4 col-xs-6">
+						<label class="custom-radio">
+                          Subscribe
+                          <input type="radio" <%= candidate.tipsAndNews ==='Subscribe' && 'checked' %>  name="tipsAndNews" value="Subscribe" >
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+                        <div class="col-lg-6 col-md-6 col-sm-4 col-xs-6">
+						<label class="custom-radio">
+                          Unsubscribe
+                          <input type="radio" name="tipsAndNews"  <%= candidate.tipsAndNews ==='Unsubscribe' && 'checked' %> value="Unsubscribe">
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="row mrg-top-20">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+					  <label class='settings-label'>Notification Frequency</label>
+					  <div class="row flex-row justify-content-left mrg-top-10">
+						<div class="col-lg-4 col-md-6 col-sm-4 col-xs-6">
+					   <label class="custom-radio">
+                          Daily
+                          <input type="radio"  <%= candidate.notificationFrequency ==='Daily' && 'checked' %> value="Daily"  name="notificationFrequency">
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+                        <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6">
+						<label class="custom-radio">
+                          Weekly
+                          <input type="radio"  <%= candidate.notificationFrequency ==='Weekly' && 'checked' %> value="Weekly"  name="notificationFrequency">
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                        <label class="custom-radio">
+                          Monthly
+                          <input type="radio"  <%= candidate.notificationFrequency ==='Monthly' && 'checked' %> value="Monthly" name="notificationFrequency">
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="row mrg-top-20">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label class='settings-label'>Profile Visibility</label>
+                      <div class="row flex-row justify-content-left mrg-top-10 text-wrap">
+                        <div class="col-lg-6 col-md-6 col-sm-4 col-xs-6">
+						<label class="custom-radio">
+                          Visibile
+                          <input type="radio" <%= candidate.visibility ==='Visibile' && 'checked' %> value="Visibile"  name="visibility">
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-4 col-xs-6">
+                        <label class="custom-radio">
+                          Invisible for everyone
+                          <input type="radio" <%= candidate.visibility ==='Invisible for everyone' && 'checked' %> value="Invisible for everyone"  name="visibility">
+                          <span class="checkmark"></span>
+                        </label>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+
+                <button type="submit" class="btn-savepreview">Update
+                  Changes</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+					</div>
+				</div>
+			</section>
+			<!-- General Detail End -->
+      <%-partial("../partials/new-footer-candidate.ejs") %>
+
+      <script src="/js/candidate/settings.js"></script>
+		

@@ -1,0 +1,53 @@
+   <!-- Sidebar Wrap -->
+   <style>
+    .edit-icon-container {
+      border-radius: 50%;
+      background-color: rgb(236, 236, 236);
+      height: 25px;
+      width: 25px;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      cursor: pointer;
+    }
+    .img-avater {
+      object-fit: cover;
+      height: 110px;
+      width: 110px;
+  }
+  </style>
+  <div class="col-lg-3 col-md-4">
+    <div class="side-dashboard">
+
+      <div class="dashboard-avatar">
+
+        <div class="dashboard-avatar-thumb" style="position: relative;">
+          <img src="<%=req.session.profileImage||'/images/avatar.png'%>" class="img-avater" id="profile-picture" alt="" />
+          <div class='edit-icon-container'>
+            <i class="fa fa-pencil "></i>
+            <input type="file" class="d-none " id="profile-input" accept="image/*">
+
+        </div>
+        </div>
+
+        <div class="dashboard-avatar-text">
+          <h4><%=candidate.firstName%> <%=candidate.lastName%></h4>
+          <span><%=candidate.email%></span>
+        </div>
+
+      </div>
+      <%const url = req.url.split('/').pop() %>
+      <div class="dashboard-menu">
+        <ul>
+          <!-- <li class="<%=url==='dashboard'?'active':'' %>" ><a href="/candidate/dashboard"><i class="ti-dashboard"></i>Dashboard</a></li> -->
+          <!-- <li class="<%=url==='my-profile'?'active':'' %>" ><a href="/candidate/my-profile"><i class="ti-id-badge"></i>My Profile</a></li> -->
+          <!-- <li class="<%=url==='saved-jobs'?'active':'' %>" ><a href="/candidate/saved-jobs"><i class="ti-heart"></i>Saved Jobs</a></li> -->
+          <li class="<%=url==='applied-jobs'?'active':'' %>" ><a href="/candidate/browse-jobs-list"><i class="ti-search"></i>Search By Job Number</a></li>
+          <li class="<%=url==='applied-jobs'?'active':'' %>" ><a href="/candidate/browse-jobs-list"><i class="ti-search"></i>Advance Job Search</a></li>
+          <li class="<%=url==='my-resume'?'active':'' %>" ><a href="/candidate/my-resume"><i class="ti-wallet"></i>Edit My Profile</a></li>
+          <li class="<%=url==='profile-preview'?'active':'' %>" ><a href="/candidate/profile-preview"><i class="ti-id-badge"></i>My Profile Preview</a></li>
+          <li class="<%=url==='settings'?'active':'' %>" ><a href="/candidate/settings"><i class="ti-settings"></i>Settings</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

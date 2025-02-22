@@ -1,0 +1,101 @@
+<%- partial("footer.ejs")%>
+
+<!-- Scripts
+================================================== -->
+<script type="text/javascript" src="/plugins/js/jquery.min.js"></script>
+<script type="text/javascript" src="/plugins/js/viewportchecker.js"></script>
+<script type="text/javascript" src="/plugins/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/plugins/js/bootsnav.js"></script>
+<script type="text/javascript" src="/plugins/js/select2.min.js"></script>
+<script type="text/javascript" src="/plugins/js/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="/plugins/js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="/plugins/js/datedropper.min.js"></script>
+<script type="text/javascript" src="/plugins/js/dropzone.js"></script>
+<script type="text/javascript" src="/plugins/js/loader.js"></script>
+<script type="text/javascript" src="/plugins/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/plugins/js/slick.min.js"></script>
+<script type="text/javascript" src="/plugins/js/gmap3.min.js"></script>
+<script type="text/javascript" src="/plugins/js/jquery.easy-autocomplete.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+   toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-bottom-left",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "000",
+    "hideDuration": "800",
+    "timeOut": "1000",
+    // "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+</script>
+<!-- Custom Js -->
+<script src="/js/custom.js"></script>
+<script type="text/javascript" src="/plugins/js/counterup.min.js"></script>
+<script>
+  $("#profile-input").click(function (e) {
+    e.stopImmediatePropagation()
+  })
+  $(".edit-icon-container").click(function () {
+    console.log("clicked")
+    $("#profile-input").click()
+  })
+
+  const profileInput = document.getElementById('profile-input')
+  if (profileInput) {
+
+    profileInput.onchange = function (evt) {
+      var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+      const formData = new FormData();
+      formData.append("image", evt.target.files[0]);
+      $.ajax({
+        type: "PATCH",
+        url: "profile-image",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: (response) => {
+          swal("Success!", response.message, "success")
+        },
+        error: errorResponseHandler
+      });
+      // FileReader support
+      if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+          document.getElementById('profile-picture').src = fr.result;
+
+        }
+        fr.readAsDataURL(files[0]);
+      }
+
+      // Not supported
+      else {
+        // fallback -- perhaps submit the input to an iframe and temporarily store
+        // them on the server until the user's session ends.
+      }
+    }
+
+  }
+
+  function errorResponseHandler(response) {
+    if (response) {
+      swal("Oops!", response.responseJSON || "Something went wrong", "error")
+
+    } else {
+      swal("Oops!", 'Something went wrong', "error")
+
+    }
+  }
+</script>

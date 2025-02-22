@@ -1,0 +1,71 @@
+<%- partial("../partials/new-header-employer.ejs") %>
+
+
+<!-- General Detail Start -->
+<section class="dashboard-wrap">
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Sidebar Wrap -->
+      <%- partial("employer-side-nav.ejs") %>
+
+      <!-- Content Wrap -->
+      <div class="col-lg-9 col-md-8">
+        <div class="dashboard-body mrg-btm-0">
+          <div class="dashboard-caption">
+
+            <div class="dashboard-caption-header">
+              <h4><i class="ti-settings"></i>Support Form</h4>
+            </div>
+
+            <div class="dashboard-caption-wrap">
+
+              <!-- Overview -->
+              <form id="support-form" action="">
+
+                <div class="form-group">
+                    <label>Subject <sup class="text-danger"></sup></label>
+                    <div class="input-with-icon">
+                      <select name="subject" class="form-control subjects" id="subjectId" placeholder="Enter Subject " required>
+                        <option value="">Select Subject</option>
+                        <option value="Can’t find resources for job, need EIN Support for Sourcing">Can’t find resources for job, need EIN Support for Sourcing</option>
+                        <option value="Technical issue">Technical issue</option>
+                        <option value="Need premium service">Need premium service</option>
+                        <option value="Need Staffing Support">Need Staffing Support</option>
+                        <option value="Others">Others</option>
+                    </select>
+                      
+                    </div>
+                  </div>
+
+                  <div class="form-group hide" id="other-option">
+                    <label>Job Number / Other <sup class="text-danger">*</sup> </label>
+                    <input type="text" class="form-control" name="other" placeholder="">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Body <sup class="text-danger">*</sup> </label>
+                    <textarea class="form-control" name="message" placeholder="Enter your message" required></textarea>
+                  </div>
+
+                  <div class="form-groups">
+                    <center><button type="submit" class="btn btn-primary submit-new btn-block">Submit</button></center>
+                  </div>
+              </form>
+
+              <!-- Notifications -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- General Detail End -->
+
+<%- partial("../partials/new-footer-employer.ejs") %>
+<script src="/js/employer/support-us.js"></script>
+

@@ -1,0 +1,102 @@
+<%- partial ("../../partials/admin-header.ejs") %>
+
+
+<body>
+  <!-- End Navigation -->
+  <div class="clearfix"></div>
+
+  <!-- General Detail Start -->
+  <section class="dashboard-wrap">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- Sidebar Wrap -->
+        <%- partial('../side-bar-nav.ejs') %>
+
+        <!-- Content Wrap -->
+        <div class="col-lg-9 col-md-8">
+          <div class="dashboard-body">
+            <div class="dashboard-caption">
+
+              <div class="dashboard-caption-header">
+                <h4><i class="ti-briefcase"></i>Employers</h4>
+              </div>
+
+              <div class="dashboard-caption-wrap">
+
+                <!-- row -->
+                <div class="row">
+
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search Name">
+                    </div>
+                  </div>
+
+                </div>
+                <!-- row -->
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Employer Name</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">Joined Date</th>
+                        <th scope="col">Jobs Created</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for( let i = 0; i < employerList.length; i++ ) { %>
+                      <% const employer = employerList[i]; %>
+                      <tr>
+                        <th scope="row"><a href="job-detail-3.html"><%= employer.recruiterName %> </a></th>
+                        <td><%= employer.company %></td>
+                        <td>
+                          <%= new Date(employer.createdAt).toLocaleString()%>
+                        </td>
+                        <td>
+                          <%= employer.jobs.length%>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <select id="" class="form-control status" data-id="<%=employer.id%>">
+                              <option value="">Select Status</option>
+                              <option <%=employer.status==='Inactive'?'selected':''  %>>Inactive</option>
+                              <option <%=employer.status==='Active'?'selected':''  %>>Active</option>
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-blue manage-btn " data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="View"><i class="ti-file"></i></a>
+                          <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="Edit"><i class="ti-pencil-alt"></i></a>
+                          <a href="#" data-id="<%=employer.id%>" class="btn btn-cancel delete manage-btn" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="Remove"><i class="ti-close"></i></a>
+                        </td>
+                      </tr>
+                      <% } %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- General Detail End -->
+  <%-partial('../../partials/employer-footer1.ejs') %>
+
+  <script src="/js/admin/employer/manage-employer.js"></script>
+
+  </div>
+</body>
+
+</html>

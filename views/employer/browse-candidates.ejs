@@ -1,0 +1,233 @@
+<%- partial("../partials/new-header-employer.ejs") %>
+<style>
+  .img-circle{
+    object-fit: cover;
+    height: 60px!important;
+    width: 60px!important;
+  }
+</style>
+<!-- End Navigation -->
+<div class="clearfix"></div>
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(http://via.placeholder.com/1920x850);">
+  <div class="container">
+    <h1>Candidates Search</h1>
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<section class="advance-search des-pd">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4 col-sm-12">
+        <div class="full-sidebar-wrap">
+
+          <a href="javascript:void(0)" onclick="openNav()" id="show-hide-sidebar-btn"
+            class="btn btn-dark full-width mrg-bot-20 hidden-lg hidden-md hidden-xl"><i
+              class="ti-filter mrg-r-5"></i>Filter Search</a>
+
+          <div class="show-hide-sidebar hidden-xs hidden-sm">
+
+            <!-- Search Job -->
+            <div class="sidebar-widgets1">
+
+              <div class="ur-detail-wrap">
+                <div class="ur-detail-wrap-header">
+                  <h4>Search Candidates</h4>
+                </div>
+                <div class="ur-detail-wrap-body">
+                  <form>
+                    <div class="form-group">
+                      <label>Keyword</label>
+                      <input type="text" class="form-control" id="keyword" value="<%=req.param('query')  %>"
+                        placeholder="Job Title or Keyword">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Skills</label>
+                      <select class="form-control " id="skills" name="skills[]" multiple="multiple">
+                        <% for( let i = 0; i < skillList.length; i++ ) { %>
+                        <%const skill = skillList[i]  %>
+                        <% if (req.param('skills') && JSON.parse(req.param('skills')).includes(skill.name)) { %>
+                        <option selected><%=skill.name  %></option>
+
+                        <% }else{ %>
+                        <option><%=skill.name  %></option>
+
+                        <% } %>
+                        <% } %>
+                      </select>
+                    </div>
+                    <select name="country" id="countryId"
+                    class="form-control countries presel-US d-none "  autocomplete="off">
+                    <option value="">Select Country</option>
+                  </select>
+
+                    <div class="form-group">
+                      <label>State</label>
+
+                        <select type="text" name="state" id="stateId"
+                        class="form-control states custom-select input-circle" required>
+                        <option value="">Select State</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>City</label>
+                        <select type="text" name="city" id="cityId" class="form-control cities custom-select input-circle"
+                        required>
+                        <option value="">Select city</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Zip</label>
+                      <input type="text" class="form-control" id="zip" value="<%=req.param('zip')  %>"
+                      placeholder="Zip">
+                    </div>
+                    <button type="button" id="find-jobs-btn" class="btn btn-primary full-width">Find Candidates</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <!-- /Search Job -->
+
+
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-8 col-sm-12">
+
+
+        <!--Browse Job -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Single New Job -->
+            <% if (candidateList.length == 0) { %>
+            <div class="newjob-list-layout">
+              <div class="cll-wrap">
+              <h4>No Candidates match the criteria</h4>
+              </div>
+            </div>
+            <% } %>
+            <% for( let i = 0; i < candidateList.length; i++ ) { %>
+            <% const candidate = candidateList[i]; %>
+            <% const resume = candidate.resumeId||{}; %>
+            <div class="newjob-list-layout">
+              <div class="cll-wrap">
+                <div class="cll-thumb">
+                  <a href="resume?candidateId=<%= candidate.id%>"><img src="<%=candidate.image != '' ? candidate.image:'/images/profile-image.png' %>" class="img-responsive img-circle"
+                      alt="" /></a>
+                </div>
+                <div class="cll-caption">
+                  <h4>
+                    <a href="resume?candidateId=<%= candidate.id%>"><%=candidate.firstName  %> <%=candidate.lastName  %> </a>
+                    <!-- <span class="jb-status full-time"><%=resume.employmentType  %></span> -->
+                  </h4>
+                  <div class="candi-skill">
+                    <% for( let j = 0; j < candidate.skillList.length; j++ ) { %>
+                    <% if (j>4) { %>
+                    <% break %>
+                    <% } %>
+                    <% const skill = candidate.skillList[j]; %>
+                    <span class="skill-tag"> <%=skill.name%> </span>
+
+                    <% } %>
+                  </div>
+
+                  <ul>
+                    <li class='text-capitalize'><i class="ti-briefcase cl-danger"></i><%=resume.employmentType  %>
+                    </li>
+                    <li><i class="ti-user cl-success"></i><%=resume.willinglessToChange  %> </li>
+                    <li><i class="ti-alarm-clock cl-success"></i><%=resume.noticePeriod  %> month(s) </li>
+                  </ul>
+
+
+                </div>
+              </div>
+
+              <div class="cll-right">
+                <div class="flex-col flex-xs-new">
+
+                  <a data-id="<%= candidate.id%>" class="btn  theme-btn mrg-bot-5 btn-shortlist set-candidateId ">Add</a>
+                  <a href="resume?candidateId=<%= candidate.id%>" class="btn theme-btn btn-shortlist ">Details</a>
+                </div>
+              </div>
+            </div>
+
+
+            <% } %>
+
+          </div>
+        </div>
+
+        		<!-- Signin Window Code -->
+			<div class="modal fade" id="add-to-job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+              <form id="add-candidate" action="">
+
+                <div class="new-logwrap">
+                  <div class="form-group">
+									<label>Job</label>
+									<div class="input-with-icon">
+                    <input type="hidden" name="candidateId" class="candidateId">
+
+                    <select name="jobId" class="form-control" id="jobs-list" required>
+                      <option value="">Select Job</option>
+                      <% for( let i = 0; i < jobList.length; i++ ) { %>
+                        <% const job = jobList[i]; %>
+                      <option value="<%=job.id  %>"><%= job.title %> </option>
+
+                      <% } %>
+
+                      </select>
+										<i class="theme-cl ti-briefcase"></i>
+									</div>
+								</div>
+
+								<div class="form-groups">
+                  <button type="submit" class="btn btn-primary theme-bg full-width">Add to job</button>
+								</div>
+							</div>
+            </form>
+
+						</div>
+						</div>
+				</div>
+			</div>
+			<!-- End Signin Window -->
+        <!--/.Browse Job-->
+
+
+        <!-- <div class="row mrg-0">
+          <ul class="pagination">
+            <li><a href="#"><i class="ti-arrow-left"></i></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
+            <li><a href="#"><i class="ti-arrow-right"></i></a></li>
+          </ul>
+        </div> -->
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<%- partial("../partials/new-footer-employer.ejs") %>
+<script src="/js/dashboard-custom.js"></script>
+<script src="/js/employer/browse-candidates.js"></script>
+<script>
+  var selectedState ="<%=req.param('state')  %>";
+  var selectedCity ="<%=req.param('city')  %>";
+</script>
+<script src="/plugins/js/countrystatecity.js"></script>
+

@@ -1,0 +1,129 @@
+<%- partial("../partials/new-header-employer.ejs") %>
+
+<!-- General Detail Start -->
+<section class="dashboard-wrap">
+  <div class="container-fluid">
+    <div class="row">
+
+      <%- partial("employer-side-nav.ejs") %>
+  <!-- Content Wrap -->
+  <div class="col-lg-9 col-md-8">
+    <div class="dashboard-body mrg-btm-0">
+      <div class="dashboard-caption">
+
+        <div class="dashboard-caption-header">
+          <h4><i class="ti-settings"></i>Settings</h4>
+        </div>
+
+        <div class="dashboard-caption-wrap pt-0">
+          <form action="">
+          <!-- row -->
+          <div class="row mrg-top-20">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class='settings-label'>New Candidate Notification </label>
+                <div class="flex-row justify-content-between mrg-top-10">
+                  <label class="custom-radio">
+                    Subscribe
+                    <input type="radio" checked="checked" name="tips">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="custom-radio">
+                    Unsubscribe
+                    <input type="radio" name="tips">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row mrg-top-20">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class='settings-label'>Job Application Submission Alerts</label>
+                <div class="flex-row justify-content-between mrg-top-10">
+                  <label class="custom-radio">
+                    Immediately
+                    <input type="radio" checked="checked" name="submission-alerts">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="custom-radio">
+                    Daily
+                    <input type="radio" name="submission-alerts">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="custom-radio">
+                    Disable
+                    <input type="radio" name="submission-alerts">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row mrg-top-20">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label class='settings-label'>Notification Frequency</label>
+                <div class="flex-row justify-content-between mrg-top-10">
+                  <label class="custom-radio">
+                    Daily
+                    <input type="radio" name="notification-frequency">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="custom-radio">
+                    Weekly
+                    <input type="radio" checked="checked" name="notification-frequency">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="custom-radio">
+                    Disable
+                    <input type="radio" name="notification-frequency">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <button type="submit" class="btn-savepreview mrg-top-20">Update
+            Changes</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    </div>
+  </div>
+</section>
+<!-- General Detail End -->
+
+<%- partial("../partials/new-footer-employer.ejs") %>
+<script>
+  var selectedState ="<%=employer.state %>";
+  var selectedCity ="<%=employer.city %>";
+</script>
+<script src="/plugins/js/countrystatecity.js"></script>
+<script src="/js/employer/employer-profile.js"></script>
+
+<!-- Map -->
+<script src="http://maps.google.com/maps/api/js?key="></script>
+<script src="/js/map_infobox.js"></script>
+<script src="/js/markerclusterer.js"></script>
+<script src="/js/map.js"></script>
+
+<script>
+  $('#birthday').dateDropper();
+</script>
+

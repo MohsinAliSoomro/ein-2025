@@ -1,0 +1,94 @@
+<%- partial ("../partials/admin-header.ejs") %>
+
+
+<body>
+  <!-- End Navigation -->
+  <div class="clearfix"></div>
+
+  <!-- General Detail Start -->
+  <section class="dashboard-wrap">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- Sidebar Wrap -->
+        <%- partial('side-bar-nav.ejs') %>
+
+        <!-- Content Wrap -->
+        <div class="col-lg-9 col-md-8">
+          <div class="dashboard-body">
+            <div class="dashboard-caption">
+
+              <div class="dashboard-caption-header">
+                <h4><i class="ti-briefcase"></i>Messages</h4>
+              </div>
+
+              <div class="dashboard-caption-wrap">
+
+                <!-- row -->
+                <div class="row">
+
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search Name">
+                    </div>
+                  </div>
+
+                </div>
+                <!-- row -->
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Sent On</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for( let i = 0; i < messageList.length; i++ ) { %>
+                      <% const publicMessage = messageList[i]; %>
+                      <tr>
+                        <th scope="row"><%= publicMessage.name %> </th>
+                        <td><%= publicMessage.email %></td>
+                        <td>
+                          <%= publicMessage.phone%>
+                        </td>
+                        <td>
+                          <%= publicMessage.subject%>
+                        </td>
+                        <td>
+                          <%= new Date(publicMessage.createdAt).toLocaleString()%>
+                        </td>
+                        <td>
+                          <a href="#" class="btn btn-blue manage-btn " data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="View"><i class="ti-file"></i></a>
+                          <a href="#" data-id="<%=publicMessage.id%>" class="btn btn-cancel delete manage-btn" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="Remove"><i class="ti-close"></i></a>
+                        </td>
+                      </tr>
+                      <% } %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- General Detail End -->
+  <%-partial('../partials/employer-footer1.ejs') %>
+
+  <script src="/js/admin/message-management.js"></script>
+
+  </div>
+</body>
+
+</html>

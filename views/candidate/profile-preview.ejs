@@ -1,0 +1,314 @@
+<%- partial("../partials/new-header-candidate.ejs") %>
+<link rel="stylesheet" media="print" href="/plugins/css/resume-print.css">
+
+<!-- Header Title Start -->
+<section class="inner-header-title blank">
+  <div class="container">
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Header Title End -->
+<!-- Candidate Detail Start -->
+<section class="detail-desc">
+  <div class="container">
+
+    <div class="ur-detail-wrap top-lay">
+
+      <div class="ur-detail-box">
+
+        <div class="">
+          <% const resume = candidate.resumeId||{}  %>
+          <img src="<%=candidate.image  %>" class="img-responsive ur-thumb" alt="" />
+        </div>
+        <div class="ur-caption">
+          <h4 class="ur-title"><%= candidate.firstName %> <%= candidate.lastName %></h4>
+          <p class="ur-location"><i class="ti-location-pin mrg-r-5"></i><%= resume.state %> , <%= resume.city %> </p>
+          <!-- <span class="ur-designation"><%= resume.professionalTitle%></span> -->
+        </div>
+
+      </div>
+
+      <div class="ur-detail-btn">
+        <!-- <a href="#" class="btn btn-warning mrg-bot-10 full-width"><i class="ti-thumb-up mrg-r-5"></i>Shortlist</a><br> -->
+        <% if (req.session &&req.session.candidateId===candidate.id) { %>
+        <a href="my-resume" class="btn btn-warning mrg-bot-10 full-width"><i class="ti-pencil mrg-r-5"></i>Edit </a><br>
+
+        <% }else{ %>
+        <a onclick="history.back()" class="btn btn-warning mrg-bot-10 full-width"><i class="ti-arrow-left mrg-r-5"></i>Back </a><br>
+        <% } %>
+        <a href="<%= resume.uploadedResume%>" class="btn btn-info full-width" download><i
+            class="ti-download mrg-r-5"></i>View Details and Download Resume</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- Candidate Detail End -->
+
+<!-- Candidate full detail Start -->
+<section class="full-detail-description full-detail">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-md-8">
+
+        <div class="row-bottom">
+          <h2 class="detail-title">About Candidate</h2>
+          <p><%=resume.aboutNotes  %></p>
+        </div>
+
+        
+
+        <div class="row-bottom">
+          <h2 class="detail-title">Work & Experience</h2>
+          <ul class="trim-edu-list">
+
+            <% for( let i = 0; i < candidate.experienceList.length; i++ ) { %>
+            <% const {employer,position,notes,toDate,fromDate} = candidate.experienceList[i]; %>
+            <li>
+              <div class="trim-edu">
+                <h4 class="trim-edu-title"><%= employer %><span
+                    class="title-est"><%= new Date(fromDate).toLocaleDateString() %> -
+                    <%= new Date(toDate).toLocaleDateString() %></span></h4>
+                <strong><%=position  %> </strong>
+                <p><%-notes  %></p>
+              </div>
+            </li>
+            <% } %>
+
+          </ul>
+        </div>
+
+        <div class="row-bottom">
+          <h2 class="detail-title">Skills</h2>
+          <div class="ext-mrg row third-progress">
+            <div class="col-md-6 col-sm-6">
+              <div class="panel-body">
+                <% for( let i = 0; i < candidate.skills.length; i+=2 ) { %>
+                <% const {skillId,percentage}= candidate.skills[i] %>
+                <%let barColor%>
+                <% if (percentage>=90) { %>
+                <% barColor = "#26a9e1"%>
+                <% }else if (percentage>=60 && percentage<=90) { %> %>
+                <% barColor = "#8bc43f"%>
+                <% }else { %>
+                <% barColor = "#f6931e"%>
+                <% } %>
+                <h3 class="progressbar-title"><%= skillId %></h3>
+                <div class="progress">
+                  <div class="progress-bar" style="width: <%= percentage %>%; background: <%=barColor%>;">
+                    <span class="progress-icon fa fa-plus"
+                      style="border-color:<%=barColor%>; color:<%=barColor%>;"></span>
+                    <div class="progress-value"><%= percentage %>%</div>
+                  </div>
+                </div>
+
+                <% } %>
+
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-sm-6">
+              <div class="panel-body">
+                <% for( let i = 1; i < candidate.skills.length; i+=2 ) { %>
+                <% const {skillId,percentage}= candidate.skills[i] %>
+                <%let barColor%>
+                <% if (percentage>=90) { %>
+                <% barColor = "#26a9e1"%>
+                <% }else if (percentage>=60 && percentage<=90) { %> %>
+                <% barColor = "#8bc43f"%>
+                <% }else { %>
+                <% barColor = "#f6931e"%>
+                <% } %>
+                <h3 class="progressbar-title"><%= skillId %></h3>
+                <div class="progress">
+                  <div class="progress-bar" style="width: <%= percentage %>%; background: <%=barColor%>;">
+                    <span class="progress-icon fa fa-plus"
+                      style="border-color:<%=barColor%>; color:<%=barColor%>;"></span>
+                    <div class="progress-value"><%= percentage %>%</div>
+                  </div>
+                </div>
+
+                <% } %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-bottom">
+          <h2 class="detail-title">Education</h2>
+          <ul class="trim-edu-list">
+            <% for( let i = 0; i < candidate.educationList.length; i++ ) { %>
+            <% const {collegeName,qualification,notes,toDate,fromDate} = candidate.educationList[i]; %>
+            <li>
+              <div class="trim-edu">
+                <h4 class="trim-edu-title"><%= collegeName %><span
+                    class="title-est"><%= new Date(fromDate).toLocaleDateString() %> -
+                    <%= new Date(toDate).toLocaleDateString() %></span></h4>
+                <strong><%=qualification  %> </strong>
+                <p><%-notes  %></p>
+              </div>
+            </li>
+            <% } %>
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4">
+        <div class="full-sidebar-wrap overview-cand">
+
+          <!-- Candidate overview -->
+          <div class="sidebar-widgets">
+
+            <div class="ur-detail-wrap">
+              <div class="ur-detail-wrap-header">
+                <h4>Candidate Overview</h4>
+              </div>
+              <div class="ur-detail-wrap-body">
+                <ul class="ove-detail-list">
+
+                  <% if (resume.jobCategory) { %>
+
+                  <li>
+                    <i class="ti-home"></i>
+                    <h5>Industry</h5>
+                    <span><%= resume.jobCategory %> </span>
+                  </li>
+                  <% } %>
+                  <% if (resume.willinglessToChange) { %>
+
+                  <li>
+                    <i class="ti-shield"></i>
+                    <h5>Willingness to Change</h5>
+                    <span><%= resume.willinglessToChange  %></span>
+                  </li>
+                  <% } %>
+                  <% if (resume.workAuthorization) { %>
+
+                  <li>
+                    <i class="ti-briefcase"></i>
+                    <h5>Work Authorization</h5>
+                    <span><%= resume.workAuthorization  %></span>
+                  </li>
+                  <% } %>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          <!-- /Candidate overview -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- company full detail End -->
+
+<!-- ============================ Call To Action ================================== -->
+<!-- <section class="theme-bg call-to-act-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="call-to-act">
+          <div class="call-to-act-head">
+            <h3>Want to Become a Success Employers?</h3>
+            <span>We'll help you to grow your career and growth.</span>
+          </div>
+          <a href="#" class="btn btn-call-to-act">SignUp Today</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- ============================ Call To Action End ================================== -->
+
+
+
+<!-- Signin Window Code -->
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div class="new-logwrap">
+
+          <!-- <div class="form-group">
+									<label>Username</label>
+									<div class="input-with-icon">
+										<input type="text" class="form-control" placeholder="Enter Your Username">
+										<i class="theme-cl ti-user"></i>
+									</div>
+								</div> -->
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-with-icon">
+              <input type="email" class="form-control" placeholder="Enter Your Email">
+              <i class="theme-cl ti-email"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-with-icon">
+              <input type="password" class="form-control" placeholder="Enter Your Password">
+              <i class="theme-cl ti-lock"></i>
+            </div>
+          </div>
+
+          <div class="form-groups">
+            <button type="submit" class="btn btn-primary theme-bg full-width">Register</button>
+          </div>
+
+          <div class="forget-account text-center">
+            <a class="theme-cl" href="#">Forget Password?</a>
+          </div>
+
+          <div class="social-devider">
+            <span class="line"></span>
+            <span class="circle">Or</span>
+          </div>
+
+          <div class="social-login row">
+
+            <div class="col-md-6">
+              <a href="#" class="jb-btn-icon social-login-facebook"><i class="fa fa-facebook"></i>Facebook</a>
+            </div>
+
+            <div class="col-md-6">
+              <a href="#" class="jb-btn-icon social-login-google"><i class="fa fa-google-plus"></i>Google</a>
+            </div>
+
+            <div class="col-md-6">
+              <a href="#" class="jb-btn-icon social-login-twitter"><i class="fa fa-twitter"></i>Twitter</a>
+            </div>
+
+            <div class="col-md-6">
+              <a href="#" class="jb-btn-icon social-login-linkedin"><i class="fa fa-linkedin"></i>Linkedin</a>
+            </div>
+
+          </div>
+
+          <div class="register-account text-center">
+            Don't have an account? <a class="theme-cl" href="register.html">Register</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Signin Window -->
+
+<%-partial("../partials/new-footer-candidate.ejs") %>
+<!-- Custom Js -->
+<script src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/plugins/js/counterup.min.js"></script>

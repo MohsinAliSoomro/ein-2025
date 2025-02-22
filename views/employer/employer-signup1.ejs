@@ -1,0 +1,196 @@
+<%- partial("../partials/public-header.ejs") %>
+
+<!-- SEO meta data -->
+
+<%- partial("../partials/public-header-2.ejs") %>
+
+<style>
+  .new-logwrap .tab-content {
+    padding: 2em 0 3em 0;
+}
+</style>
+
+
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(/img/slider/7.jpg);">
+  <div class="container">
+    <h1>Employer Sign up</h1>
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<!-- Tab Section Start -->
+<section class="tab-sec gray" style="padding:1rem 0px ;">
+  <div class="container">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-lg-offset-2 col-md-offset-2">
+      <div class="new-logwrap">
+<!--
+        <ul class="flex-row justify-content-between list-unstyled ">
+          <li class="col-md-6 active mrg-bot-10">
+            <a href="/candidate/signup" style="background:white;color:var(--theme);"
+              class="jb-btn-icon  active">Candidate Signup </a>
+          </li>
+
+          <li class="col-md-6">
+            <a href="javascript:void(0)" class="jb-btn-icon theme-bg">Employer Signup</a>
+          </li>
+        </ul> -->
+
+        <div class="tab-content mrg-bot-10">
+
+
+          <form id="employer-signup-form" class="tab-pane fade in active mrg-top-10 mrg-bot-10">
+
+            <div class="form-group">
+              <label>Recruiter Name <sup class="text-danger">*</sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="recruiterName" class="form-control" placeholder="Enter Recruiter Name " required>
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Recruiter Email <sup class="text-danger">*</sup></label>
+              <div class="input-with-icon">
+                <input type="email" name="recruiterEmail" id="recruiterEmail" class="form-control" placeholder="Enter Your Recruiter Email" required>
+                <i class="theme-cl ti-email"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password <sup class="text-danger">*</sup> <span class="hint-text">(use atleast 8 length password with 1 alphabate, 1 number and 1 special Char)</span></label>
+              <div class="input-with-icon pwd-strength">
+                <input type="password" name='password' id="password" class="form-control"
+                  placeholder="Enter Your Password" required>
+                <i class="theme-cl ti-lock"></i>
+                <span class="pwd-strength-status text-secondary" id="strength"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Confirm Password <sup class="text-danger">*</sup></label>
+              <div class="input-with-icon">
+                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Your Password"
+                  required>
+                <i class="theme-cl ti-lock"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Company <sup class="text-danger">*</sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="company" class="form-control" placeholder="Enter Company " required>
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Company Website<sup class="text-danger">*</sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="companyWebsite" class="form-control" placeholder="Enter Company Website" required>
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label>Company Owner Name</label>
+              <div class="input-with-icon">
+                <input type="text" name="companyOwnerName" class="form-control" placeholder="Enter Company Owner Name" >
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Company Owner Email</label>
+              <div class="input-with-icon">
+                <input type="text" name="companyOwnerEmail" class="form-control" placeholder="Enter Company Owner Email" >
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div> -->
+            <div class="form-group">
+              <label>Phone <sup class="text-danger"></sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="phone" class="form-control" placeholder="Enter Phone ">
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Address 1<sup class="text-danger"></sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="address1" class="form-control" placeholder="Enter Address Line 1">
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label>Address 2 </label>
+              <div class="input-with-icon">
+                <input type="text" name="address2" class="form-control" placeholder="Enter Address 2 ">
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div> -->
+            <div class="form-group">
+              <label>Country<sup class="text-danger"></sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="country" value="United States" class="form-control" placeholder="Enter Country" disabled>
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <select class="form-control countries d-none presel-US" name="country" id="countryId" >
+            </select>
+            <div class="form-group">
+              <label>State <sup class="text-danger"></sup></label>
+              <div class="input-with-icon">
+                <select  name="state" class="form-control states" id="stateId" placeholder="Enter State ">
+                  <option value="">Select State</option>
+                </select>
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>City <sup class="text-danger"></sup></label>
+              <div class="input-with-icon">
+                <select id="cityId" name="city" class="form-control cities" placeholder="Enter City ">
+                  <option value="">Select City</option>
+                </select>
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Zip <sup class="text-danger"></sup></label>
+              <div class="input-with-icon">
+                <input type="text" name="zip" class="form-control" placeholder="Enter Zip ">
+                <i class="theme-cl ti-user"></i>
+              </div>
+            </div>
+
+
+
+
+            <div class="register-account text-center">
+              By hitting the <span class="theme-cl">"Register"</span> button, you agree to the <a class="theme-cl"
+                href="/privacy-policy-and-terms">Terms conditions</a> and <a class="theme-cl" href="/privacy-policy-and-terms">Privacy Policy</a>
+            </div>
+
+            <div class="form-groups">
+              <button type="submit" class="btn btn-primary theme-bg full-width">Register</button>
+            </div>
+
+            <div class="">
+            <p class="" style="margin-top: 1rem;"> <small>Have an account  <a href="/employer/login">Sign In</a></small></p>
+          </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Tab section End -->
+
+<%-partial("../partials/employer-footer1.ejs")%>
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+
+<script src="/js/employer/employer-signup.js"></script>
+
+</div>
+</body>
+
+</html>

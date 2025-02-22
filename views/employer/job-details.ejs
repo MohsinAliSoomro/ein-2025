@@ -1,0 +1,286 @@
+<%- partial("../partials/new-header-employer.ejs") %>
+
+<style>
+  .dashboard-body {
+    padding: 0;
+    background: white;
+  }
+
+  html body .container {
+    width: 100%;
+  }
+
+  ul.job-requirements li {
+    text-align: center;
+  }
+
+  .inner-header-title{
+    background-position-y: 30%;
+  }
+  .grid-view-caption{
+    margin-top: 0px!important;
+  }
+  .grid-view-caption{
+    border-bottom: 1px solid #eaeff5;
+    border-right: 1px solid #eaeff5;
+    border-left: 1px solid #eaeff5;
+  }
+</style>
+<div class="container mrg-0">
+  <!-- Job Detail Start -->
+  <!-- Title Header Start -->
+  <section class="inner-header-title" style="background-image:url(/img/applications.jpg);">
+    <div class="container">
+      <h1>Job Details</h1>
+    </div>
+  </section>
+  <section class="padd-0">
+    <div class="">
+      <!-- Sidebar Start-->
+      <div class="col-md-3 col-sm-3">
+
+        <!-- Job Detail -->
+        <div class="sidebar-container">
+          <div class="sidebar-box">
+            <!-- <span class="sidebar-status"><%=job.type%></span> -->
+            <!-- <h4 class="flc-rate">20K - 30K</h4> -->
+            <div class="sidebar-inner-box">
+              <!-- <div class="sidebar-box-thumb">
+                <img src="<%= job.image %>" class="img-responsive" alt="" />
+              </div> -->
+
+            </div>
+            <div class="sidebar-box-extra">
+
+              <!-- <ul class="status-detail">
+          <li class="br-1"><strong>Canada</strong>Location</li>
+          <li class="br-1"><strong>748</strong>View</li>
+          <li><strong>03</strong>Post</li>
+        </ul> -->
+            </div>
+
+            <div class="apply-job-header">
+              <h4><%= job.title %></h4>
+              <a href="company-detail.html" class="cl-success"><span><i
+                    class="fa fa-building"></i><%= job.company %></span></a>
+              <span><i class="fa fa-map-marker"></i><%= job.state %>,<%= job.city %> </span>
+            </div>
+
+
+
+
+
+            <div class="apply-job-detail">
+              <h5>Requirements</h5>
+              <ul class="grid-view-caption">
+                <li>
+                  <div class="brows-job-location">
+                    <p>Job Type</p>
+                  </div>
+                </li>
+                <li>
+                  <p><%= job.type %> </span></p>
+                </li>
+              </ul>
+              <ul class="grid-view-caption">
+                <li>
+                  <div class="brows-job-location">
+                    <p>Job Skills</p>
+                  </div>
+                </li>
+                <li>
+                  <p><%= job.requiredSkill && job.requiredSkill.map(el=>el.name).join(',') || '' %> </span></p>
+                </li>
+              </ul>
+              <br>
+              <h6>Job Description</h6 >
+                <p>
+                  <%- job.description %>
+                </p>
+            </div>
+          </div>
+          <!-- <a href="#" class="btn btn-sidebar bt-1 bg-success">Apply For This</a> -->
+        </div>
+
+
+
+
+      </div>
+      <!-- End Sidebar -->
+      <div class="col-md-9 col-sm-9">
+        <div class="container-detail-box">
+
+          <div class="dashboard-body">
+            <div class="dashboard-caption">
+
+              <div class="dashboard-caption-header">
+                <h4><i class="ti-user"></i>Applications</h4>
+              </div>
+
+              <div class="dashboard-caption-wrap">
+
+                <!-- row -->
+                <div class="row">
+
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search Name">
+                    </div>
+                  </div>
+
+
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <select id="application-status" class="form-control">
+                        <option>Status</option>
+                        <option>Approved</option>
+                        <option>Pending</option>
+                        <option>Rejected</option>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- row -->
+                <ul class="list">
+                  <% if (candidates.length===0) { %>
+                  <li class="manage-list-row clearfix">
+                    <div class="job-info">
+
+                      <h4>No applications yet</h4>
+                    </div>
+                  </li>
+
+                  <% } %>
+
+                  <% for( let i = 0; i < candidates.length; i++ ) { %>
+                  <% const candidate = candidates[i].candidateId%>
+                  <% const resume = candidates[i].resume||{}%>
+                  <li class="manage-list-row clearfix">
+                    <div class="job-info">
+                      <div class="job-img"><a class="job_name_tag" href="resume?candidateId=<%=candidate.id%>">
+                        <img src="<%= candidate.image %>" class="attachment-thumbnail" alt="">
+                      </a>
+                      </div>
+                      <div class="job-details">
+                        <h3 class="job-name"><a class="job_name_tag" href="resume?candidateId=<%=candidate.id%>"><%= candidate.firstName %>
+                            <%= candidate.lastName %> </a></h3>
+                        <small class="job-company"><i class="ti-briefcase"></i><%= resume.professionalTitle %>
+                        </small>
+                        <!-- <small class="job-sallery"><i class="ti-time"></i>3 Year Ex.</small> -->
+                        <small class="job-sallery"><i class="ti-location-pin"></i><%= resume.city %>, <%= resume.state %></small>
+                        <!-- <% if (candidates[i].status=='shortlisted') { %>
+
+                        <div class="shortlisted-can">shortlisted</div>
+                        <% } %> -->
+
+                        <div class="candi-skill">
+                          <% if (resume.skillList) { %>
+
+                            <% for( let j = 0; j < resume.skillList.length; j++ ) { %>
+                              <% const skill = resume.skillList[j]; %>
+                              <span class="skill-tag"> <%=skill.name%> </span>
+
+                              <% } %>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="job-buttons mrg-top-0">
+
+                      <!-- <a href="#" class="btn btn-gary manage-btn" data-id="<%= resume.id %>" data-toggle="tooltip"
+                        data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
+                      <a href="#" class="btn btn-cancel manage-btn delete" data-id="<%= candidate.id %>"
+                        data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
+
+                         -->
+                         <table class="table">
+                          <thead>
+                            <tr>
+                              <th class="padd-top-0" scope="col">Shortlisted</th>
+                              <th class="padd-top-0" scope="col">Applied</th>
+                              <th class="padd-top-0" scope="col">Profile</th>
+                              <th class="padd-top-0" scope="col">Remove</th>
+                              <th class="padd-top-0" scope="col">Status</th>
+                              <th class="padd-top-0" scope="col">Created By</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           <tr>
+                            <td scope="col">
+                              <% if (candidates[i].status ==='shortlisted') { %>
+
+                                <a href="#" class="btn btn-success manage-btn " data-id="<%= candidate.id %>"
+                                  data-toggle="tooltip" data-placement="top" title="Shortlist"><i class="ti-check"></i></a>
+                                <% }else{ %>
+                                  <a href="#" class="btn btn-cancel manage-btn shortlist" data-id="<%= candidate.id %>"
+                                    data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
+                                  <%} %>
+                            </td>
+                            <td scope="col">
+                      <a href="#" class="btn btn-success manage-btn shortlist" data-id="<%= candidate.id %>"
+                        data-toggle="tooltip" data-placement="top" title="Shortlist"><i class="ti-check"></i></a></td>
+                            <td scope="col">
+                              <a href="/images/<%= candidate.id %>-resume.pdf" class="btn btn-gary manage-btn" data-id="<%= resume.id %>" data-toggle="tooltip"
+                                data-placement="top" title="Download Resume" download><i class="ti-download"></i></a>
+                            </td>
+                            <td scope="col">
+
+                      <a href="#" class="btn btn-cancel manage-btn delete" data-id="<%= candidate.id %>"
+                        data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
+                            </td>
+                            <td scope="col">
+
+                              <%= candidate.status %>
+                            </td>
+                            <td scope="col">
+                              <%= candidate.profileFor %>
+                            </td>
+                           </tr>
+
+                          </tbody>
+                        </table>
+                    </div>
+                  </li>
+
+                  <% } %>
+
+
+                </ul>
+
+
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="job-detail-statistic flex-middle-sm">
+
+          <div class="statistic-item flex-middle">
+            <div class="icon text-theme">
+              <i class="ti-email theme-cl"></i></div>
+            <span class="text"><%= job.email ? job.email : recruiterEmail %></span>
+          </div>
+
+          <div class="statistic-item flex-middle">
+            <div class="icon text-theme">
+              <i class="ti-briefcase theme-cl"></i></div>
+            <span class="text"><%= job.category %></span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </section>
+  <!-- Job Detail End -->
+</div>
+<%- partial("../partials/new-footer-employer.ejs") %>
+
+<script type="text/javascript" src="/js/employer/job-details-script.js"></script>

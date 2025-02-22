@@ -1,0 +1,327 @@
+<%- partial("../partials/new-header-candidate.ejs") %>
+
+<style>
+  .img-circle {
+    object-fit: cover;
+    height: 60px !important;
+    width: 60px !important;
+  }
+  
+</style>
+<!-- End Navigation -->
+<div class="clearfix"></div>
+
+<!-- Title Header Start -->
+<section class="inner-header-title">
+  <div class="container">
+    <h1>Advance Search</h1>
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<section class="advance-search">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="full-sidebar-wrap">
+
+          <a href="javascript:void(0)" onclick="openNav()"
+            class="btn btn-dark full-width mrg-bot-20 hidden-lg hidden-md hidden-xl"><i
+              class="ti-filter mrg-r-5"></i>Filter Search</a>
+
+          <div class="show-hide-sidebar hidden-xs hidden-sm">
+
+            <!-- Search Job -->
+            <div class="sidebar-widgets1">
+
+              <div class="ur-detail-wrap">
+                <div class="ur-detail-wrap-header">
+                  <h4>Search Job Here</h4>
+                </div>
+                <div class="ur-detail-wrap-body">
+                  <form>
+                    <div class="form-group">
+                      <label>Search By Job Number</label>
+                      <input type="text" class="form-control" id="job-number" value="<%=req.param('jobNumber')  %>"
+                        placeholder="Job Number">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Keyword</label>
+                      <input type="text" class="form-control" id="keyword" value="<%=req.param('query')  %>"
+                        placeholder="Job Title or Keyword">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Skills</label>
+                      <select class="form-control " id="skills" name="skills[]" multiple="multiple">
+                        <% for( let i = 0; i < skillList.length; i++ ) { %>
+                          <%const skill = skillList[i]  %>
+                          <% if (req.param('skills') && JSON.parse(req.param('skills')).includes(skill.name)) { %>
+                          <option selected><%=skill.name  %></option>
+
+                          <% }else{ %>
+                          <option><%=skill.name  %></option>
+                          <% } %>
+                        <% } %>
+                      </select>
+                    </div>
+                    
+                    <select name="country" id="countryId"
+                    class="form-control countries presel-US d-none "  autocomplete="off">
+                    <option value="">Select Country</option>
+                  </select>
+
+                    <div class="form-group">
+                      <label>State</label>
+                      <select type="text" name="state" id="stateId"
+                      class="form-control states custom-select input-circle" required>
+                      <option value="">Select State</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label>City</label>
+                      <select type="text" name="city" id="cityId" class="form-control cities custom-select input-circle"
+                      required>
+                      <option value="">Select city</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Category</label>
+                      <select id="category" class="form-control">
+                        <option value="">Choose Category</option>
+                        <% const optionsArray =["Accounting Assistant","Arts, Design, Media","Charity and Voluntary","Education and Coachs","Finance And Business","IT and Computer","Banking",]%>
+                        <% for( let i = 0; i < optionsArray.length; i++ ) { %>
+                        <% let option = optionsArray[i]; %>
+                        <% if (req.param('category')===option) { %>
+                        <option selected><%=option %></option>
+                        <% } else{%>
+                        <option><%=option %></option>
+                        <% } %>
+                        <% } %>
+
+                      </select>
+                    </div>
+                    <button type="button" id="find-jobs-btn" class="btn btn-primary full-width">Find Jobs</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <!-- /Search Job -->
+
+
+
+            <!-- Job Type -->
+            <!-- <div class="sidebar-widgets">
+              <div class="ur-detail-wrap colps-wrap">
+
+                <div class="ur-detail-wrap-header">
+                  <h4 class="colps-head collapsed" data-toggle="collapse" href="#jb-types" role="button"
+                    aria-expanded="false" aria-controls="jb-types">Job Type</h4>
+                </div>
+                <div class="collapse" id="jb-types">
+                  <div class="ur-detail-wrap-body">
+                    <ul class="advance-list">
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="1">
+                          <label for="1"></label>
+                        </span>
+                        Full Time
+                      </li>
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="2">
+                          <label for="2"></label>
+                        </span>
+                        Part Time
+                      </li>
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="3">
+                          <label for="3"></label>
+                        </span>
+                        Internship
+                      </li>
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="4">
+                          <label for="4"></label>
+                        </span>
+                        Freelancer
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- /Job Type -->
+
+            <!-- Location -->
+            <!-- <div class="sidebar-widgets">
+              <div class="ur-detail-wrap colps-wrap">
+
+                <div class="ur-detail-wrap-header">
+                  <h4 class="colps-head collapsed" data-toggle="collapse" href="#jb-location" role="button"
+                    aria-expanded="false" aria-controls="jb-location">Popular Locations</h4>
+                </div>
+                <div class="collapse" id="jb-location">
+                  <div class="ur-detail-wrap-body">
+                    <ul class="advance-list">
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="1">
+                          <label for="1"></label>
+                        </span>
+                        New York
+                      </li>
+
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="2">
+                          <label for="2"></label>
+                        </span>
+                        New Jersey
+                      </li>
+
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="3">
+                          <label for="3"></label>
+                        </span>
+                        Boston
+                      </li>
+
+                      <li>
+                        <span class="custom-checkbox">
+                          <input type="checkbox" id="4">
+                          <label for="4"></label>
+                        </span>
+                        Los Angeles
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- /Popular Locations -->
+
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-8 col-sm-12 col-xs-12">
+
+
+        <!--Browse Job -->
+        <div class="row">
+          <div class="col-md-12 col-xs-12">
+            <% if (jobList.length == 0) { %>
+            <div class="newjob-list-layout">
+              <div class="cll-wrap">
+                <h4>No Jobs match the criteria</h4>
+              </div>
+            </div>
+            <% } %>
+            <% for( let i = 0; i < jobList.length; i++ ) { %>
+            <% const job = jobList[i]; %>
+            <!-- Single New Job -->
+            <div class="newjob-list-layout">
+              <div class="cll-wrap">
+                <!-- <div class="cll-thumb">
+                  <a href="job-details?id=<%= job.id %>"><img src="<%= job.image %>" class="img-responsive img-circle"
+                      alt="" /></a>
+                </div> -->
+                <div class="cll-caption">
+                  <% if (job.type ==='Full-Time') { %>
+                  <h4><a href="job-details?id=<%= job.id %>"><%= job.title %> </a><span
+                      class="jb-status full-time"><%= job.type %></span></h4>
+                  <% } %>
+                  <% if (job.type ==='Part-time') { %>
+                  <h4><a href="job-details?id=<%= job.id %>"><%= job.title %> </a><span
+                      class="jb-status part-time"><%= job.type %></span></h4>
+                  <% } %>
+                  <% if (job.type ==='Contract') { %>
+                  <h4><a href="job-details?id=<%= job.id %>"><%= job.title %> </a><span
+                      class="jb-status part-time"><%= job.type %></span></h4>
+                  <% } %>
+                  <% if (job.type ==='Temprorary') { %>
+                  <h4><a href="job-details?id=<%= job.id %>"><%= job.title %> </a><span
+                      class="jb-status enternship"><%= job.type %></span></h4>
+                  <% } %>
+                  <% if (job.type ==='Freelancer') { %>
+                  <h4><a href="job-details?id=<%= job.id %>"><%= job.title %> </a><span
+                      class="jb-status freelanc"><%= job.type %></span></h4>
+                  <% } %>
+
+
+
+                  <ul>
+                    <li class='text-capitalize'><i class="ti-briefcase "></i><%= job.company %></li>
+                    <li><i class="fa fa-list-alt"></i><%= job.category %> </li>
+                    <li><i class="fa fa-map-marker"></i><%= job.city %>,<%= job.state %> </li>
+                  </ul>
+
+                  <div class="candi-skill mrg-top-10">
+                    <% for( let j = 0; j < job.skills.length; j++ ) { %>
+                    <% if (j>6) { %>
+                    <% break %>
+                    <% } %>
+                    <% const skill = job.skills[j]; %>
+                    <span class="skill-tag"> <%=skill.name%> </span>
+
+                    <% } %>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="cll-right">
+                <% if (!job.isApplied) { %>
+                <a href="javascript:void(0)" data-id="<%= job.id %>" class="btn theme-btn btn-shortlist job-apply"><i
+                    class="ti-arrow-right"></i>Apply</a>
+                <% }else{ %>
+                <a href="javascript:void(0)" data-id="<%= job.id %>"
+                  class="btn btn-warning btn-shortlist job-withdraw "></i>Withdraw</a>
+
+                <% } %>
+              </div>
+            </div>
+
+
+            <% } %>
+
+          </div>
+        </div>
+        <!--/.Browse Job-->
+
+        <!--
+        <div class="row mrg-0">
+          <ul class="pagination">
+            <li><a href="#"><i class="ti-arrow-left"></i></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
+            <li><a href="#"><i class="ti-arrow-right"></i></a></li>
+          </ul>
+        </div> -->
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<%-partial("../partials/new-footer-candidate.ejs") %>
+<script src="/js/candidate/browse-jobs-list.js"></script>
+<script>
+  var selectedState ="<%=req.param('state')  %>";
+  var selectedCity ="<%=req.param('city')  %>";
+</script>
+<script src="/plugins/js/countrystatecity.js"></script>
