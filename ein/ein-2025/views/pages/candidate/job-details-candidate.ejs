@@ -1,0 +1,182 @@
+<%- partial("../partials/new-header-candidate.ejs") %>
+<div class="wrapper">
+
+  <div class="clearfix"></div>
+
+  <!-- Title Header Start -->
+  <section class="inner-header-title" style="background-image: url(/img/profile-preview.jpg);background-position-y:50%">
+    <div class="container">
+    </div>
+  </section>
+  <div class="clearfix"></div>
+  <!-- Title Header End -->
+
+  <!-- Candidate Detail Start -->
+  <section class="detail-desc">
+    <div class="container">
+
+      <div class="ur-detail-wrap top-lay">
+
+        <div class="ur-detail-box">
+
+          <div class="ur-thumb">
+            <img src="/images/job.png" class="img-responsive" alt="" />
+          </div>
+          <div class="ur-caption">
+            <% const employer = job.employerId||{} %>
+            <h4 class="ur-title"><%= job.title %> </h4>
+            <p class="ur-location"><i class="ti-location-pin mrg-r-5"></i><%= job.city %> , <%= job.state %></p>
+            <span class="ur-designation"><%= employer.company %></span>
+
+          </div>
+
+        </div>
+
+        <div class="ur-detail-btn">
+          <% if (job.applied) { %>
+
+            <a href="#" data-id="<%= job.id %>" class="btn btn-warning mrg-bot-10 full-width job-withdraw">Withdraw</a><br>
+            <% }else {%>
+
+            <a href="#" data-id="<%= job.id %>" class="btn btn-success mrg-bot-10 full-width" data-toggle="modal" data-target="#candidate-job-apply">
+              <i class="ti-arrow-right"></i>
+              Apply Now</a><br>
+            <% } %>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- Candidate Detail End -->
+
+  <!-- Candidate full detail Start -->
+  <section class="full-detail-description full-detail">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-8 col-md-8">
+
+          <div class="row-bottom">
+            <h2 class="detail-title">Job Description</h2>
+            <p><%= job.description %></p>
+          </div>
+
+          <div class="row-bottom">
+            <h2 class="detail-title">Skills</h2>
+
+            <ul class="detail-list">
+              <%
+              if(job.requiredSkill){
+              for( let i = 0; i < job.requiredSkill.length; i++ ) { %>
+                <% const skill = job.requiredSkill[i]  %>
+                <li><%= skill.name %> </li>
+                <% } } %>
+            </ul>
+          </div>
+
+          <div class="job-detail-statistic flex-middle-sm">
+
+            <div class="statistic-item flex-middle">
+              <div class="icon text-theme">
+              <i class="ti-email theme-cl"></i></div>
+              <span class="text"><%= employer.recruiterEmail %> </span>
+            </div>
+
+            <div class="statistic-item flex-middle">
+              <div class="icon text-theme">
+              <i class="ti-briefcase theme-cl"></i></div>
+              <span class="text"><%= job.category %></span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+          <div class="full-sidebar-wrap">
+
+            <!-- Candidate overview -->
+            <div class="sidebar-widgets">
+
+              <div class="ur-detail-wrap">
+                <div class="ur-detail-wrap-header">
+                  <h4>Candidate Overview</h4>
+                </div>
+                <div class="ur-detail-wrap-body">
+                  <ul class="ove-detail-list">
+
+                    <li>
+                      <i class="ti-pin"></i>
+                      <h5>Location</h5>
+                      <span><%= job.city %> ,<%= job.state %> </span>
+                    </li>
+
+                    <li>
+                      <i class="ti-time"></i>
+                      <h5>Type</h5>
+                      <span><%= job.type %></span>
+                    </li>
+
+                    <li>
+                      <i class="ti-home"></i>
+                      <h5>Category</h5>
+                      <span><%= job.category %></span>
+                    </li>
+
+                    <li>
+                      <i class="ti-shield"></i>
+                      <h5>Experience</h5>
+                      <span><%= job.experience %> yr(s)</span>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            <!-- /Candidate overview -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- company full detail End -->
+  <!-- Modal -->
+  <div class="modal fade" id="candidate-job-apply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Answer the Questions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <% if(questions){ %>
+            <% for(let i in questions){ %>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group job-question">
+                  <label><%=parseInt(i)+1%>- <%=questions[i].question%></label>
+                  <input type="text" name="firstName" class="form-control answer" placeholder=""
+                    value="<%=answers[questions[i].id]%>" required>
+                    <input type="hidden" class="question" value="<%=questions[i].id%>" />
+                </div>
+              </div>
+            <% } %>
+            <% } %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" data-id="<%= job.id %>" class="btn btn-primary job-apply">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<%-partial("../partials/new-footer-candidate.ejs") %>
+
+<script type="text/javascript" src="/js/candidate/candidate-job-details.js"></script>

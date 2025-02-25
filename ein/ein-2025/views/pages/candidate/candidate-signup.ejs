@@ -1,0 +1,177 @@
+<%- partial("../partials/new-public-header.ejs") %>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '165206685297523',
+      xfbml      : true,
+      version    : 'v9.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="jumbotron signup-section">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-xs-12 form-details-filling">
+          <h3>Create Your Profile</h3>
+          
+          <form id="candidate-signup-form">
+				<div class="row">
+					<div class="col-lg-12 form-group">
+					  <input type="text" class="form-control" name="firstName" placeholder="First Name*" required>
+					</div>
+				</div>
+                <div class="row">
+					<div class="col-lg-12 form-group">
+					  <input type="text" class="form-control" name="lastName" placeholder="Last Name*" required>
+					</div>
+				</div>	
+				<div class="row">	
+					<div class="col-lg-12 form-group">
+					<input type="email" class="form-control" name="email" placeholder="Email*" required>
+					</div>
+				</div>
+				<div class="row">	
+					 <div class="col-lg-12 form-group">
+					<select class="form-control" name="profileFor" id="profile-for" required>
+					  <option disabled selected hidden>Profile Created For</option>
+					  <option>Self</option>
+					  <option>Others</option>
+					</select>
+					</div>
+				</div> 
+              <div class="row">
+                <div class="col-lg-12 form-group">
+                  <span class="hint-text">(use atleast 8 length password with 1 alphabate, 1 number and 1 special Char)</span>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password*" required>
+                <span class="pwd-strength-status text-secondary" id="strength"></span>
+              </div>
+			  </div>
+			  <div class="row">
+					<div class="col-lg-12 form-group">
+					<input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password*" required>
+					</div>
+              </div> 
+              <div class="row links" style="text-align:center;">
+                <h6 style="margin-left:15px;">By hitting the <span class="jobs-no">"Register"</span> button, you agree to the <span class="jobs-no"><a class="theme-cl"
+                  href="/privacy-policy-and-terms">Terms & Conditions</a></span> and  <span class="jobs-no"><a class="theme-cl" href="/privacy-policy-and-terms">Privacy Policy</a></span></h6>
+                <button type="submit" class="btn btn-register">REGISTER</button>
+              </div>
+              
+                <div class="separator">
+                    <span class="line"></span>
+                    <span class="circle">OR</span>
+                </div>
+              <h3>Sign up with:</h3>
+               <div class="row">
+                <div class="col-lg-6 col-xs-6">
+                  <a href="#" class="jb-btn-icon2 gplogin-social2"><i class="fa fa-google-plus"></i>Google</a>
+                </div>	
+                <div class="col-lg-6 col-xs-6">
+                  <a href="#" class="jb-btn-icon2 lnlogin-social2"><i class="fa fa-linkedin"></i>Linkedin</a>
+                </div>	
+              </div>
+			  <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <a href="/candidate/google" class="jb-btn-icon2 social-login-facebook">
+					<i class="fa fa-facebook"></i>Facebook</a>
+                  </div>
+
+
+
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <a href="#" class="jb-btn-icon2 social-login-bing"><img src="/images/bing.png" class="bing-img2"></i>Bing</a>
+                  </div>
+              </div>
+              <div class="row links">	
+              <h6 style="margin-left:15px;padding-bottom: 15px;">Already have an Account! <a href="/candidate/login"><span class="jobs-no">Sign In</span></a></h6>
+              </div>
+            </form>  
+        </div>
+        
+        <div class="col-lg-6 signup-detail">
+          <img src="/images/post-job.png" alt="" />
+          <p>Unable to meet recruiters? You have come to the right place! Our site has the right tools to send your resume to the right people. All you have to do is <span class="jobs-no">upload your resume</span>, and our ATS software can handle the rest. A single click can now make you visible to recruiters. Your future job might already be at the doorstep!</p>
+          <a href="/employer/post-new-job" class="btn btn-register">POST FREE JOBS</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <!--<div class="card features feature-new">
+    <div class="card-body feature-list">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="/images/dream-job.png" class="img-responsive" alt="" width="80%"/>
+        </div>
+        <div class="col-lg-5 feature-text text-left">
+          <h3>Find your dream job</h3>
+          <p>Fue popularizado en los 60s con la creación de las hojas "Letraset",las cuales contenian pasajes de Lorem Ipsum,y más re</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 feature-text text-left" style="margin-top:20px;">
+          <h3>Get a golden opportunity</h3>
+          <p>Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más re</p>
+        </div>
+        <div class="col-lg-6" style="margin-top:30px;">
+          <img src="/images/signup-2-2.png" class="img-responsive" alt="" width="80%"/>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  <div class="row"> 
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="cs-blog blog-grid">
+                    <div class="cs-media">
+                        <figure>
+								<img alt="" src="/images/dream-job.png"></a>
+                        </figure>
+                    </div>
+                    <div class="blog-text">
+                        <div class="cs-inner-bolg">
+                            <div class="cs-post-title feature-text">
+                                <h3>Find your dream job</h3>
+								<p>Improve your career. Take the leap and start a new one. Boost your job satisfaction and improve your professional life with help of Employeeinneed. Access insider knowledge, put it to use, and get the life you've always wanted.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="cs-blog blog-grid">
+                    <div class="cs-media">
+                        <figure>
+                            <img alt="" src="/images/signup-2-2.png"></a>
+                        </figure>
+                    </div>
+                    <div class="blog-text">
+                        <div class="cs-inner-bolg">
+                            
+                            <div class="cs-post-title feature-text">
+                                <h3>Get a golden opportunity</h3>
+								<p>Candidates can apply quickly and easily. We’ll send frequent job alerts to qualified candidates, getting more eyes on your job postings. Employeeinneed makes it quick and easy for candidates to apply.</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+            </div>
+</div>
+
+<%- partial("../partials/new-public-footer.ejs") %>
+<script src="/js/candidate/candidate-signup.js"></script>

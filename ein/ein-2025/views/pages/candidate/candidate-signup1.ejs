@@ -1,0 +1,189 @@
+<%- partial("../partials/public-header.ejs") %>
+
+<!-- SEO meta data -->
+
+<%- partial("../partials/public-header-2.ejs") %>
+
+
+<body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '165206685297523',
+        xfbml      : true,
+        version    : 'v9.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+<div
+class="fb-like"
+data-share="true"
+data-width="450"
+data-show-faces="true">
+</div>
+  <div class="Loader"></div>
+  <div class="wrapper">
+
+
+    <!-- Title Header Start -->
+    <section class="inner-header-title" style="background-image:url(/img/slider/6.jpg);">
+      <div class="container">
+        <h1>Candidate Sign up</h1>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- Title Header End -->
+
+    <!-- Tab Section Start -->
+    <section class="tab-sec gray" style="padding:1rem 0px ;">
+      <div class="container">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-lg-offset-2 col-md-offset-2">
+          <div class="new-logwrap" style="padding-top: 20px">
+
+
+            <!-- <ul class="flex-row justify-content-between list-unstyled ">
+              <li class="col-md-6 active ">
+                <a href="javascript:void(0)" class="jb-btn-icon theme-bg active">Candidate Signup</a>
+              </li>
+
+              <li class="col-md-6">
+                <a href="/employer/signup" style="background:white;color:var(--theme);" class="jb-btn-icon ">Employer Signup</a>
+              </li>
+            </ul> -->
+
+            <div class="tab-content">
+
+              <div id="candidate" class="tab-pane fade in active">
+                <!-- <div class="form-group">
+									<label>Username</label>
+									<div class="input-with-icon">
+										<input type="text" class="form-control" placeholder="Enter Your Username">
+										<i class="theme-cl ti-user"></i>
+									</div>
+								</div> -->
+                <div class="social-login flex-row justify-content-center">
+
+                  <div class="col-md-12">
+                    <h4>Sign up with :</h4>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="/candidate/facebook" class="jb-btn-icon social-login-facebook"><i class="fa fa-facebook"></i>Facebook</a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="/candidate/google" class="jb-btn-icon social-login-google"><i class="fa fa-google-plus"></i>Google</a>
+                  </div>
+
+
+
+                  <div class="col-md-4">
+                    <a href="#" class="jb-btn-icon social-login-linkedin"><i class="fa fa-linkedin"></i>Linkedin</a>
+                  </div>
+
+                </div>
+
+                <div class="social-devider mb-3">
+                  <span class="line"></span>
+                  <span class="circle">Or</span>
+                </div>
+                <form id="candidate-signup-form">
+
+                  <div class="form-group">
+                    <label>First Name <sup class="text-danger">*</sup></label>
+                    <div class="input-with-icon">
+                      <input type="text" name="firstName" class="form-control" placeholder="Enter First Name " required>
+                      <i class="theme-cl ti-user"></i>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Last Name <sup class="text-danger">*</sup></label>
+                    <div class="input-with-icon">
+                      <input type="text" name="lastName" class="form-control" placeholder="Enter Last Name " required>
+                      <i class="theme-cl ti-user"></i>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email <sup class="text-danger">*</sup></label>
+                    <div class="input-with-icon">
+                      <input type="email" name="email" class="form-control" placeholder="Enter Your Email" required>
+                      <i class="theme-cl ti-email"></i>
+                      
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Password <sup class="text-danger">*</sup> <span class="hint-text">(use atleast 8 length password with 1 alphabate, 1 number and 1 special Char)</span></label>
+                    <div class="input-with-icon pwd-strength">
+                      <input type="password" name='password' id="password" class="form-control" placeholder="Enter Your Password" required>
+                      <i class="theme-cl ti-lock"></i>
+                      <span class="pwd-strength-status text-secondary" id="strength"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Confirm Password</label>
+                    <div class="input-with-icon">
+                      <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Your Password" required>
+                      <i class="theme-cl ti-lock"></i>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Profile Created For</label>
+                    <div class="input-with-icon ">
+                      <select  class="form-control" name="profileFor" id="profile-for" required>
+                      <option >Self</option>
+                      <option >Others</option>
+                      </select>
+                      <i class="theme-cl ti-briefcase"></i>
+                    </div>
+                  </div>
+
+
+                  <div class="register-account text-center">
+                    By hitting the <span class="theme-cl">"Register"</span> button, you agree to the <a class="theme-cl"
+                      href="/privacy-policy-and-terms">Terms conditions</a> and <a class="theme-cl" href="/privacy-policy-and-terms">Privacy Policy</a>
+                  </div>
+
+                  <div class="form-groups">
+                      <button type="submit" class="btn btn-primary theme-bg full-width">Register</button>
+                  </div>
+
+
+                  <div class="" style="margin-top: 10px;">
+                    <div class="col-md-6 mrg-bot-5">
+
+                      Already have an account! <a class="" href="/candidate/login"> <u> Sign In.</u></a>
+
+                    </div>
+                </div>
+
+                </form>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Tab section End -->
+    <%- partial('../partials/candidate-footer1')%>
+
+    <script src="/js/candidate/candidate-signup.js"></script>
+
+  </div>
+</body>
+
+</html>

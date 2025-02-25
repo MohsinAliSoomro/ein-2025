@@ -1,0 +1,95 @@
+<%- partial("../partials/new-public-header.ejs") %>
+
+<section id="search-feild">
+    <div class="container">
+		<div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <form class="form-inline">
+                    <div class="row">
+									<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 text-right">
+										 <div class="input-group text-center">
+											<span class="input-group-addon">What</span>
+											<input id="msg" type="text" class="form-control" name="msg" placeholder="Job keyword">
+											<span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-5 col-sm-5 col-xs-12 text-center">
+										<div class="input-group text-center">
+											<span class="input-group-addon">Where</span>
+											<input id="msg" type="text" class="form-control" name="msg" placeholder="Location">
+											<span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 text-left">
+										<button type="submit" class="btn btn-find mb-2">Find Jobs</button>
+									</div>
+								</div>
+            </div>
+        </div>
+	</div>
+</section>	
+
+<section id="recent-jobs">
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="text-center heading">RECENT JOBS</p>
+        <h3 class="text-center"><span class="jobs-no">57142</span> AVAILABLE JOBS FOR YOU</h3>
+    </div>	
+</div>
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-12 col-md-12 apply-jobs">
+                        <% if(jobList.length > 0){ %>
+                        <% for(let i in jobList){ %>
+                        <div class="row vacancy">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6 post-name">
+                                <h6><strong><%=jobList[i].title%></strong></h6>
+                                <p><small><%=jobList[i].type%></small></p>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 post-details">
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;<%=jobList[i].state%>, <%=jobList[i].country%></p>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 text-center post-details">
+                                <p class="job-pincode"><%=jobList[i].zip%></p>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 post-details">
+                                <p><small>Experience:-<%=jobList[i].experience%>yrs</small></p>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <button type="button" class="btn btn-apply in-new" onclick="location.href='/job-detail/<%=jobList[i].id%>';">Apply Now</button>
+                            </div>
+                        </div><hr>
+                        <% } %>
+                        <% } else { %>
+                            <div class="row job-searchresult">
+                                <center>Sorry related jobs are not found</center>
+                            </div>
+                        <% } %>
+                        
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <!-- <button type="submit" class="btn view mb-2">View More Jobs</button> -->
+                                <nav aria-label="...">
+                                    <ul class="pager">
+                                        <% if(!previousPage) { %>
+                                            <li class="disabled"><a href="javascript:;">Previous</a></li>
+                                        <% } else { %>
+                                            <li><a href="<%=previousPage%>">Previous</a></li>
+                                        <% } %>
+                
+                                        <% if(!nextPage) { %>
+                                            <li class="disabled"><a href="javascript:;">Next</a></li>
+                                        <% } else { %>
+                                            <li><a href="<%=nextPage%>">Next</a></li>
+                                        <% } %>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>	
+                </div>	
+            </div>
+        </div>
+</section>
+
+<%- partial("../partials/new-public-footer.ejs") %>

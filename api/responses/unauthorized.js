@@ -25,8 +25,7 @@ module.exports = function unauthorized() {
   var req = this.req;
   var res = this.res;
 
-  sails.log.verbose('Ran custom response: res.unauthorized()');
-
+  sails.log.verbose('Ran custom response: res.unauthorized()',req);
   if (req.wantsJSON) {
     return res.sendStatus(401);
   }
@@ -37,7 +36,7 @@ module.exports = function unauthorized() {
       delete req.session.userId;
     }
 
-    return res.redirect('/login');
+    return res.redirect('/index');
   }
 
 };

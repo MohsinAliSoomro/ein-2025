@@ -23,14 +23,19 @@ Note:  Generators are usually run using the globally-installed `sails` CLI (comm
 -->
 
 Hostname: ssh.employeeinneed.com
-
 Username: u3125-zzxhnkdoawm4
-
 Password: Test@123
-
 Port: 18765
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDuFLuh3JYF1lE7Cev7vv/FFm4jlTNYalSdqmRbL7nptLyWH5JwCqqkklFyTePbNGJwu53V6nhbkHfYxnEI+LjrttZW0UmJozFvdjreIrrJ87Qvxr8YzS/PDpBaz3MHNFs4mIfrMY5FfDbrfmi9no/1STZQ1uvKdhW6sceHLC3meX4T7Sv/0tJh2au+kzlt12E6fQgtXv2ibWgpT/jqxfeO5zIV9meIdfTok/wzliVLbKx3SvUNACPm80IfbGPXEZoDkxHBgT/bjMbSv4LIQSPcgGK7BFH28wqKzoCGTWKdlk8cx5OdYg5SxTWFDSq48NxIjla3dEFC9iIfOZXYb3FeGBxRxnI/Cf13SDoACC9JH6kQYu6c95ThdATM6tNu0N5zAPxN1R7iKtvbhF9FcI2rlKtEVqPk8Xh8PKRdCSbfk6F95vYpuoEXBDs34DHt7L5KLQ2ZI8XNS7ajnX6HL+ICS1GPXCotL5SujtsP/gVuCpFuRF38ngDY8iGKdgLq4hvrHC4B4eTUQp8hE6b4+qTTk7iheMy8tWSg+REN1ZpSKtMI4QyyDjWB+GJoInTZK+jmUtEB11EphoYDjNOOtqd3JKTNOxqFaiUyvrUL4VOI1MBjZGs2pX0//bF7zcX/i6hk3QWDsM4PTxQ+qkw07vGwT8w4nvpsUBp2+R3tl6UfnQ==
+
+generate key
+ssh-keygen -t rsa -b 4096 -C "mohsinalisoomro23@gmail.com"
+
+verify key
+ssh -i ~/.ssh/id_rsa u3125-zzxhnkdoawm4@35.212.6.98
+connect server
+
 
 ssh -vvv -i ~/.ssh/id_rsa -p 18765 u3125-zzxhnkdoawm4@35.212.6.98
 

@@ -1,0 +1,176 @@
+<%- partial("../partials/new-public-header.ejs") %>
+
+<div class="video-background">
+    <div class="video-wrap">
+        <div class="embed-responsive embed-responsive-16by9">
+            <video class="video-fluid z-depth-2 embed-responsive-item  w-100"controls="false" autoplay playsinline controls hide muted loop>
+                <source src="/images/onboarding.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div class="overlay">
+            <div class="overlay-text">
+                <form class="form-inline" action="/search-jobs">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                             <div class="input-group">
+                                <span class="input-group-addon">What</span>
+                                <input id="search" type="text" class="form-control" name="search" placeholder="Job keyword" required>
+                                <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Where</span>
+                                <input id="where" type="text" class="form-control" name="where" placeholder="Location">
+                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                            <button type="submit" class="btn btn-find mb-2">Find Jobs</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-5 col-xs-5">
+                        <a href="/candidate/my-resume"><h5>Post your resume </h5></a>
+                        <p class="detail-section" style="color:#fff;">It only takes a few seconds</p>
+                    </div>
+                    <div class="col-lg-7 col-xs-7">
+                        <a href="/employer/post-new-job"><h5>Employers: Post your free jobs </h5></a>
+                        <p class="detail-section" style="color:#fff;">Your next hire is here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>	
+</div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 text-left">
+                <div class="postimg">
+                    <img src="/images/section2.jpg" class="img-fluid" alt="your alt text">
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 text-left business">
+                <h3>FOR BUSINESSES</h3>
+                <p>Your Jobs Postings Will Be Visible To The Ideal Candidates With A Single Click. We Have The Tools To Guarantee The Perfect Hiring Process. Our Powerful Technology Can Look Through Thousands Of Resumes To Match Recruiters With The Right Jobseekers.</p>
+                <button type="button" class="btn btn-apply mb-2" onclick="javascript:location.href='/employer/post-new-job';">Post free jobs</button>
+                    
+            </div>
+        </div>
+        <div class="row candidate">
+            <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 text-left">
+                        <h3 class="des-view">FOR CANDIDATES</h3>
+                        <p class="des-view">Unable To Meet Recruiters? You Have Come To The Right Place! Our Platform Has The Right Tools To Send Your Resume To The Right People. All You Must Do Is Upload Your Resume, And Our Platform Can Handle The Rest. A Single Click Can Now Make You Visible To Recruiters And Your Future Job Might Already Be At The Doorstep !</p>
+                        <button type="submit" class="btn btn-apply mb-2 des-view" onclick="javascript:window.location.href='/search-jobs';">Find a job</button>
+                    <div class="postimg">
+                    <img src="/images/section-1(2).png" class="img-fluid mob-view" alt="your alt text">
+                    </div>
+            </div>
+            <div class=" col-lg-5 col-md-6 col-sm-6 col-xs-12 text-left cand">
+                <div class="postimg des-view">
+                    <img src="/images/section-1(2).png" class="img-fluid des-view" alt="your alt text">
+                </div>
+                <h3 class="mob-view">FOR CANDIDATES</h3>
+                <p class="mob-view">Unable To Meet Recruiters? You Have Come To The Right Place! Our Platform Has The Right Tools To Send Your Resume To The Right People. All You Must Do Is Upload Your Resume, And Our Platform Can Handle The Rest. A Single Click Can Now Make You Visible To Recruiters And Your Future Job Might Already Be At The Doorstep !</p>
+                <button type="button" class="btn btn-apply mb-2 mob-view" onclick="javascript:location.href='/search-jobs';">Find a job</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="demo" style=" background-image: url(/images/dream-job2.png);background-size: cover;justify-content:center;
+  background-repeat: no-repeat;">
+	<div class="container see-demo">
+		<div class="row connect">
+			<div class="col-sm-12">
+				<h1 class="text-white">Seeking For a Job?</h1>
+				<p class="text-center">Unable to meet recruiters? You have come to the right place! Our site has the right tools to send your resume to the right people. All you have to do is upload your resume, and our Our Platform can handle the rest. A single click can now make you visible to recruiters. Your future job might already be at the doorstep!</p>
+				<button type="submit" class="btn btn-new mt-2" onclick="location.href='/candidate/signup';">Create a Account</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+    <div>
+        <h3 style="margin-bottom:10px">About Us</h3>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-top:10px;" >
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <img src="/images/about2.png" alt="" class="img-responsive" id="about-img"/>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 about-content">
+            <p>The perfect match is out there, but you need the right tools. You will not have to spend an eternity looking through resumes and job descriptions when you partner with Employee in Need. </p>
+            <p>At Employee in Need, we guarantee smooth and straightforward navigation through the job market for employers and candidates. We have gained expertise in top-notch technologies such as artificial intelligence and machine learning, ensuring that our customers get the best of every world.</p>
+            <p><a href="/contact">Reach us</a> for more information about the services at Employee in Need.</p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- <section>
+<div>
+    <h3 style="margin-top:-10px"></h3>
+    
+</div>
+<div class="container">
+    <div class="row" style="margin-top:10px;" >
+    <div class="col-lg-6">
+        <img src="/images/about2.png" alt="" class="img-responsive" id="about-img"/>
+    </div>
+    <div class="col-lg-6 about-content">
+        <p style="font-size:1.6rem;">The perfect match is out there, but you need the right tools. You will not have to spend an eternity looking through resumes and job descriptions when you partner with Employee in Need. </p>
+        <p style="font-size:1.6rem;">At Employee in Need, we guarantee smooth and straightforward navigation through the job market for employers and candidates. We have gained expertise in top-notch technologies such as artificial intelligence and machine learning, ensuring that our customers get the best of every world.</p>
+        <p style="font-size:1.6rem;"><a href="#">Reach us</a> for more information about the services at Employee in Need.</p>
+    </div>
+</div>
+</div>
+</section> -->
+<section id="process">
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <p class="heading">OUR PROCESS</p>
+            <h3>HOW WE WORK FOR YOU ?</h3>
+            <p style="color:#000;">Employee in Need can guarantee a seamless recruitment experience with the latest technologies at our disposal. </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="process">
+                <a style="text-decoration:none;color:inherit;" href="/candidate/signup"><img src="/images/step-1.png" alt=""  />
+                <h4><strong>Create An Account</strong></h4>
+                <span>
+                    <p>Create An Account By Filling Relevant Details And Complete Your Profile. Filling The Details Will Increase Your Reach And Trust For Employers.</p>
+                </span></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="process">
+                <a style="text-decoration:none;color:inherit;" href="find-jobs"><img src="/images/step-2.png" alt=""  />
+                <h4><strong>Search Jobs</strong></h4>
+                <span>
+                    <p>Search For Jobs Arround You By Entering Job Roles <br> You Are Interested And Add Location To Find Jobs Near You.</p>
+                </span></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="process">
+                <a style="text-decoration:none;color:inherit;" href="/candidate/login"><img src="/images/step-3.png" alt=""  />
+                <h4><strong>Save & Apply</strong></h4>
+                <span>
+                    <p>After Jobs That Matches You Profile And Keep <br> An Eye On You Email And Employeeinneed <br> Dashboard.</p>
+                </span></a>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<%- partial("../partials/new-public-footer.ejs") %>
+<script src="/js/home.js"></script>

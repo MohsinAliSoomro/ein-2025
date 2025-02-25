@@ -1,0 +1,143 @@
+<%- partial("../../partials/new-public-header.ejs") %>
+
+    <!-- Title Header Start -->
+    <section class="inner-header-title" id="cand-login">
+      <div class="container">
+        <h1>Candidate Login</h1>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- Title Header End -->
+
+    <!-- Tab Section Start -->
+    <section class="tab-sec gray" style="background-image:url();">
+      <div class="container">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-lg-offset-2 col-md-offset-2">
+          <div class="new-logwrap">
+
+            <!-- <ul class="nav modern-tabs nav-tabs theme-bg" id="simple-design-tab">
+							<li class="active"><a href="#candidate">Candidate</a></li>
+							<li><a href="#employer">Employer</a></li>
+						</ul> -->
+            <!-- <ul class="nav simple nav-tabs" id="simple-design-tab">
+							<li class="active"><a href="#candidate">Candidate Signup</a></li>
+							<li><a href="#employer">Company Signup</a></li>
+
+						</ul> -->
+
+            <!-- <ul class="flex-row justify-content-between list-unstyled ">
+              <li class="col-md-6 active ">
+                <a href="javascript:void(0);" class="jb-btn-icon theme-bg active">Candidate Login</a>
+              </li>
+
+              <li class="col-md-6">
+                <a href="/employer/login" style="background:white;color:var(--theme);" class="jb-btn-icon ">Employer Login</a>
+              </li>
+            </ul> -->
+
+            <div class="tab-content">
+
+              <div id="candidate" class="tab-pane fade in active">
+                <!-- <div class="form-group">
+									<label>Username</label>
+									<div class="input-with-icon">
+										<input type="text" class="form-control" placeholder="Enter Your Username">
+										<i class="theme-cl ti-user"></i>
+									</div>
+								</div> -->
+                <div class="social-login1 flex-row justify-content-center">
+
+                  <div class="col-md-12">
+                    <h4>Login with :</h4>
+                  </div>
+                  <!-- <div class="col-md-4">
+                    <a href="/candidate/facebook" class="jb-btn-icon social-login-facebook"><i class="fa fa-facebook"></i>Facebook</a>
+                  </div> -->
+
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <a href="/candidate/google" class="jb-btn-icon2 social-login-google">
+					<i class="fa fa-google-plus"></i>Google</a>
+                  </div>
+
+
+
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <a href="#" class="jb-btn-icon2 social-login-linkedin"><i class="fa fa-linkedin"></i>Linkedin</a>
+                  </div>
+				  
+				  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <a href="/candidate/google" class="jb-btn-icon2 social-login-facebook">
+					<i class="fa fa-facebook"></i>Facebook</a>
+                  </div>
+
+
+
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                    <a href="#" class="jb-btn-icon2 social-login-bing"><img src="/images/bing.png" class="bing-img"></i>Bing</a>
+                  </div>
+				  
+
+                </div>
+
+                <div class="social-devider mb-3">
+                  <span class="line"></span>
+                  <span class="circle">Or</span>
+                </div>
+                <form id="candidate-login-form">
+
+
+
+                  <div class="form-group">
+                    <label>Email</label>
+                    <div class="input-with-icon">
+                      <input type="email" name="email" value="" class="form-control" placeholder="Enter Your Email" required>
+                      <i class="theme-cl ti-email"></i>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-with-icon">
+                      <input type="password" name='password' id="password" value="" class="form-control" placeholder="Enter Your Password" required>
+                      <i class="theme-cl ti-lock"></i>
+                    </div>
+                  </div>
+
+
+                  <div class="form-groups">
+                      <button type="submit" class="btn btn-primary theme-bg full-width">Login</button>
+                  </div>
+
+                  <div class="" style="margin-top: 10px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6 mrg-bot-5">
+
+                      <a class="" href="/forgot-password?type=candidate"> <u> Forgot Password</u></a>
+
+                    </div>
+                    <div class="col-md-6  col-sm-6 col-xs-6 mrg-bot-5">
+
+                      <a href="/candidate/signup"><u> New Registration</u></a>
+
+                    </div>
+                </div>
+				
+					<div class="row for-emp">
+						<div class="col-md-12">
+							<a href="/employer/login">If you are an Employer Please click here to login !!</a>
+						</div>
+					</div>
+                </form>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Tab section End -->
+
+    <%- partial("../../partials/new-public-footer.ejs") %>
+    
+    <script src="/js/candidate/candidate-login.js"></script>
